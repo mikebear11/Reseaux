@@ -53,6 +53,14 @@ sonne fabriqué à son auteur, il n'a été calibré sur aucun corpus.
 Les deux fichiers sont faits pour être modifiés. Si l'utilisateur emploie
 toujours un mot que le lexique supprime, retirez-le du fichier.
 
+## Le message sanitaire n'est jamais touché
+
+« L'abus d'alcool est dangereux pour la santé » (et la formule de `voice.md`
+si elle est plus longue) reste mot pour mot dans tout texte nettoyé. Si un
+texte parle d'alcool ou accompagne une image qui s'y rapporte et que la phrase
+manque, ajoutez-la en fin de texte avant de le montrer. C'est la règle de la
+brasserie, voir `../ig-caption/loi-evin.md`.
+
 ## Pourquoi c'est plus important sur Instagram qu'il n'y paraît
 
 Les légendes sont courtes et les scripts sont dits à voix haute. Une phrase qui

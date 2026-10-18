@@ -31,10 +31,19 @@ de la seule personne dont l'avis comptait : le créateur.
 
 ## Loi Évin
 
+**Règle absolue de la brasserie.** Dès qu'un contenu parle d'alcool, ou que
+sa photo ou sa vidéo s'y rapporte (bière, verre, bouteille, canette, fût,
+tireuse, cuve, comptoir, dégustation, brassage…), il porte la phrase
+**« L'abus d'alcool est dangereux pour la santé. »** Sans exception, même quand
+le texte ne nomme aucune bière. Dans le doute, mettez-la. Elle s'ajoute en fin
+de texte, ne compte pas comme appel à l'action, et `/ig-human` ne la retire
+jamais. Si `voice.md` donne une formule plus longue (par exemple « …, à
+consommer avec modération »), utilisez celle-là.
+
 Lisez d'abord `../ig-caption/loi-evin.md`. Pour un commentaire :
 
 - Pas de pitch (voir les règles), donc en principe pas de bière de la brasserie
-  nommée. Si un commentaire montre ou nomme une bière, il porte le message
+  nommée. Si un commentaire parle d'alcool, il porte le message
   sanitaire « L'abus d'alcool est dangereux pour la santé ».
 - Quand on parle de bière, rester sur ce que L3323-4 autorise : degré, origine,
   ingrédients, brassage, arômes, médailles, où acheter. Tout le reste (fête,

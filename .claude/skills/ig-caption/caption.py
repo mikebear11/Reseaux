@@ -22,9 +22,12 @@ Usage
   python3 caption.py legende.txt --lang fr --keywords "bière artisanale,brasserie"
 
 French: --lang auto (the default) detects it and adds the French calls to
-action. The ÉVIN check (--evin auto|on|off) fails a caption that talks about
-alcohol without the health warning required by article L3323-4 of the Code de
-la santé publique. It checks that one sentence and nothing else: see
+action. The ÉVIN check fails a caption that lacks the health warning
+"L'abus d'alcool est dangereux pour la santé" (article L3323-4 of the Code de
+la santé publique). House rule of the brewery: the default is --evin on, so
+every caption needs it, because the script cannot see the photo. --evin auto
+only asks for it when the text itself mentions alcohol; --evin off is for a
+post whose text and image have nothing to do with alcohol. It checks that one sentence and nothing else: see
 loi-evin.md in this folder for what the law allows a post to say.
 """
 
@@ -92,7 +95,7 @@ ALCOHOL_RE = re.compile(
     r"(?i)\b(?:bières?|ipa|neipa|stout|porter|lager|pils|brasserie|brassins?|brassée?s?|alcools?"
     r"|degrés?|vins?|cidres?|cocktails?|apéro|pintes?|fûts?|houblons?|malts?"
     r"|beers?|brewery|brewed|ale|wine|alcohol)\b|\d+(?:[.,]\d+)?\s?%\s?(?:vol|alc)")
-HEALTH_RE = re.compile(r"(?i)abus d['’]alcool est dangereux pour la santé")
+HEALTH_RE = re.compile(r"(?i)abus\s+d\s?['’]?\s?alcool\s+est\s+dangereux\s+pour\s+la\s+santé")
 
 FILLER_TAGS = {"#viral", "#fyp", "#explore", "#explorepage", "#foryou", "#foryoupage",
                "#trending", "#instagood", "#love", "#follow", "#like4like", "#reels",
@@ -119,7 +122,7 @@ def render_box(window, truncated, out=sys.stdout, width=52):
     print("  +" + "-" * (width + 2 - len(tail) - 2) + f" {tail} " + "+", file=out)
 
 
-def analyse(text, cut=TRUNCATE, keywords=None, lang="auto", evin="auto"):
+def analyse(text, cut=TRUNCATE, keywords=None, lang="auto", evin="on"):
     if lang == "auto":
         lang = detect_lang(text) if detect_lang else "en"
     text = text.rstrip()
@@ -218,9 +221,11 @@ def analyse(text, cut=TRUNCATE, keywords=None, lang="auto", evin="auto"):
             add("ÉVIN", "PASS", "health warning present (\"l'abus d'alcool est dangereux pour la "
                                 "santé\"). Only that sentence is checked, see loi-evin.md")
         else:
-            add("ÉVIN", "FAIL", "talks about alcohol with no health warning. Art. L3323-4 Code de "
-                                "la santé publique: add \"L'abus d'alcool est dangereux pour la "
-                                "santé\". See loi-evin.md")
+            why = ("talks about alcohol" if alcohol else
+                   "no health warning, and the photo may relate to alcohol (house rule: always)")
+            add("ÉVIN", "FAIL", f"{why}. Add \"L'abus d'alcool est dangereux pour la santé.\" "
+                                "(art. L3323-4 Code de la santé publique). --evin off only if "
+                                "neither text nor image relates to alcohol. See loi-evin.md")
 
     fails = sum(1 for c in checks if c["status"] == "FAIL")
     warns = sum(1 for c in checks if c["status"] == "WARN")
@@ -257,8 +262,9 @@ def main():
     ap.add_argument("--keywords", default="", help="comma-separated terms you want to be found for")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--lang", choices=["auto", "fr", "en"], default="auto")
-    ap.add_argument("--evin", choices=["auto", "on", "off"], default="auto",
-                    help="Loi Évin health-warning check (auto: when the caption mentions alcohol)")
+    ap.add_argument("--evin", choices=["auto", "on", "off"], default="on",
+                    help="Loi Évin health warning: on (default, always required), auto (only "
+                         "when the text mentions alcohol), off (post unrelated to alcohol)")
     args = ap.parse_args()
 
     raw = sys.stdin.read() if args.input == "-" else open(args.input, encoding="utf-8").read()

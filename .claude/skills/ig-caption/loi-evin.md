@@ -14,6 +14,15 @@ Sources, consultées le 18/10/2026 :
 - Ministère de la Santé, « Alcool : cadre légal », mis à jour le 09/08/2024 :
   https://sante.gouv.fr/prevention-en-sante/addictions/article/alcool-cadre-legal
 
+## Règle de la brasserie (prime sur tout le reste)
+
+Dès qu'un contenu parle d'alcool, ou que sa photo ou sa vidéo s'y rapporte,
+il porte « L'abus d'alcool est dangereux pour la santé. » Toujours, quel que
+soit le format (post, Reel, carrousel, story, commentaire, réponse, DM, bio),
+et même quand le texte ne nomme aucune bière. Dans le doute, on la met. C'est
+plus large que ce que l'article L3323-4 exige au minimum, et c'est voulu :
+mieux vaut l'avoir en trop qu'en moins.
+
 ## 1. Instagram est un support autorisé, sous conditions
 
 L3323-2, 9° : la publicité pour l'alcool est autorisée « sur les services de
@@ -95,8 +104,8 @@ vérifiée en détail ici : faites valider avant toute collaboration payée.
 
 ## Ce que les skills font de tout ça
 
-- Chaque légende, Reel, carrousel ou story qui montre ou nomme une bière porte
-  le message sanitaire.
+- Tout contenu qui parle d'alcool ou dont l'image s'y rapporte porte le
+  message sanitaire, quel que soit le format.
 - Les accroches et scripts s'appuient d'abord sur ce que L3323-4 autorise : le
   brassage, les ingrédients, l'origine, les arômes, les médailles, où acheter.
   C'est aussi ce qui donne les meilleures accroches (des chiffres, des noms,

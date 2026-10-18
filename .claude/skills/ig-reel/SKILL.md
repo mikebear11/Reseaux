@@ -41,9 +41,18 @@ vous en lisant un script à voix haute, puis passez votre vrai débit à
 
 ## Loi Évin
 
+**Règle absolue de la brasserie.** Dès qu'un contenu parle d'alcool, ou que
+sa photo ou sa vidéo s'y rapporte (bière, verre, bouteille, canette, fût,
+tireuse, cuve, comptoir, dégustation, brassage…), il porte la phrase
+**« L'abus d'alcool est dangereux pour la santé. »** Sans exception, même quand
+le texte ne nomme aucune bière. Dans le doute, mettez-la. Elle s'ajoute en fin
+de texte, ne compte pas comme appel à l'action, et `/ig-human` ne la retire
+jamais. Si `voice.md` donne une formule plus longue (par exemple « …, à
+consommer avec modération »), utilisez celle-là.
+
 Lisez d'abord `../ig-caption/loi-evin.md`. Pour un Reel :
 
-- Tout Reel qui montre ou nomme une bière porte le message sanitaire
+- Tout Reel qui parle d'alcool ou dont l'image s'y rapporte porte le message sanitaire
   « L'abus d'alcool est dangereux pour la santé » : sur une carte à l'écran ET
   dans la légende (`/ig-caption`).
 - Construisez l'accroche et le script d'abord sur ce que L3323-4 autorise :
@@ -163,7 +172,8 @@ historique plus tard.
 - **Incrustez les sous-titres pour le corps.** La plupart des gens regardent
   d'abord sans le son.
 - **Le message sanitaire** est une carte lisible, dans la zone de sécurité,
-  dès que la bière est montrée ou nommée.
+  dès que le Reel parle d'alcool ou
+  que l'image s'y rapporte.
 
 ## Les règles qui font la différence
 
@@ -205,5 +215,5 @@ On tourne la #1 : un chiffre, un coût, et c'est le vôtre. La #5 a les chiffres
 mais rien en jeu (STAKES 20) : ajoutez ce que les six semaines coûtaient avant
 de la retenter. Les deux parlent du brassage et de l'origine du houblon, ce que
 L3323-4 autorise. Ajoutez la carte « L'abus d'alcool est dangereux pour la
-santé » dès que la bouteille apparaît.
+santé » dès que le Reel parle d'alcool ou que l'image s'y rapporte.
 ```

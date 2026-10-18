@@ -16,7 +16,7 @@ Un outil vit dans ce dossier, et il se lance comme ceci :
 ```bash
 python3 caption.py caption.txt
 python3 caption.py caption.txt --keywords "bière artisanale,bière de saison"
-python3 caption.py caption.txt --lang fr --evin on
+python3 caption.py caption.txt --lang fr --evin off   # seulement si rien ne touche à l'alcool
 ```
 
 Il affiche la légende comme le fil l'affiche : les 125 premiers caractères dans
@@ -24,8 +24,8 @@ un cadre, tout le reste derrière le tap. Lisez ce cadre avant de relire quoi qu
 ce soit d'autre de ce que vous avez écrit.
 
 Options : `--lang auto|fr|en` (défaut `auto` : détecte la langue du texte, et
-reconnaît les appels à l'action français) et `--evin auto|on|off` (contrôle
-`ÉVIN`, voir plus bas).
+reconnaît les appels à l'action français) et `--evin on|auto|off` (contrôle
+`ÉVIN`, `on` par défaut : la phrase sanitaire est exigée partout, voir plus bas).
 
 ## Langue et ton
 
@@ -38,12 +38,21 @@ reconnaît les appels à l'action français) et `--evin auto|on|off` (contrôle
 
 ## Loi Évin
 
+**Règle absolue de la brasserie.** Dès qu'un contenu parle d'alcool, ou que
+sa photo ou sa vidéo s'y rapporte (bière, verre, bouteille, canette, fût,
+tireuse, cuve, comptoir, dégustation, brassage…), il porte la phrase
+**« L'abus d'alcool est dangereux pour la santé. »** Sans exception, même quand
+le texte ne nomme aucune bière. Dans le doute, mettez-la. Elle s'ajoute en fin
+de texte, ne compte pas comme appel à l'action, et `/ig-human` ne la retire
+jamais. Si `voice.md` donne une formule plus longue (par exemple « …, à
+consommer avec modération »), utilisez celle-là.
+
 Lisez `../ig-caption/loi-evin.md` (le fichier `loi-evin.md` de ce dossier) avant
 toute légende de brasserie.
 
-- Toute légende qui montre ou nomme une bière porte le message sanitaire
+- Toute légende qui parle d'alcool ou dont l'image s'y rapporte porte le message sanitaire
   « L'abus d'alcool est dangereux pour la santé ». Mettez-le aussi sur le
-  visuel quand le produit est montré.
+  visuel quand l'image se rapporte à l'alcool.
 - Appuyez la légende d'abord sur ce que L3323-4 autorise : degré, origine,
   ingrédients, brassage, arômes, couleur, médailles, où acheter.
 - Tout le reste (fête, trinquer, humour, séduction, sport, réussite sociale)
@@ -81,8 +90,8 @@ Ligne 1     125 caractères visibles. Travail A : l'appel à l'action, simplemen
 Corps       paragraphes courts, une ligne vide entre chacun. Deux à six.
             C'est là que vivent les termes de recherche.
 L'appel     un seul. Commenter un mot-clé, enregistrer, ou envoyer un DM. Un.
-Message     « L'abus d'alcool est dangereux pour la santé », dès qu'une bière
-sanitaire   est montrée ou nommée.
+Message     « L'abus d'alcool est dangereux pour la santé », dès que le texte
+sanitaire   parle d'alcool ou que l'image s'y rapporte.
 Hashtags    jusqu'à 5, sur leur propre ligne en bas, ou aucun.
 ```
 
@@ -136,8 +145,8 @@ python3 caption.py brouillon.txt --keywords "bière artisanale,bière de saison"
   ce qui dépasse 4 emoji pour 100 caractères.
 - **Le texte alternatif vaut 20 secondes.** Pour les carrousels et les photos,
   écrivez-le. Il est lu par les lecteurs d'écran et par Instagram.
-- **Le message sanitaire n'est pas négociable** dès qu'une bière est montrée ou
-  nommée. Il ne compte pas dans « un seul appel à l'action ».
+- **Le message sanitaire n'est pas négociable** dès que le texte parle d'alcool ou
+  que l'image s'y rapporte. Il ne compte pas dans « un seul appel à l'action ».
 
 ## La boucle
 
@@ -149,13 +158,15 @@ python3 caption.py brouillon.txt --keywords "bière artisanale,bière de saison"
 4. Lancez `caption.py` avec les termes de recherche de l'utilisateur
    (`--lang fr` si la détection hésite). Corrigez chaque FAIL. Tranchez chaque
    WARN à voix haute plutôt qu'en silence.
-5. Contrôle `ÉVIN` : si `caption.py` renvoie FAIL parce que la légende parle
-   d'alcool sans message sanitaire, ajoutez-le et relancez. `--evin on` force le contrôle
-   (par exemple quand la bière n'est montrée que sur l'image) ; n'utilisez
-   `--evin off` que pour un post sans aucun lien avec l'alcool. Relisez ensuite
-   le contenu contre `loi-evin.md` : le script vérifie la présence du message,
-   pas le reste. Chaque élément hors L3323-4 devient « À FAIRE VALIDER (Loi
-   Évin) ».
+5. Contrôle `ÉVIN` : par défaut (`--evin on`), `caption.py` exige
+   « L'abus d'alcool est dangereux pour la santé » dans **toute** légende,
+   parce que le script ne voit pas la photo. S'il renvoie FAIL, ajoutez la
+   phrase en fin de légende et relancez. `--evin off` uniquement pour un post
+   dont ni le texte ni l'image n'ont de lien avec l'alcool (une offre d'emploi
+   sans visuel de bière, par exemple) ; dans le doute, laissez `on`. Relisez
+   ensuite le contenu contre `loi-evin.md` : le script vérifie la présence de
+   la phrase, pas le reste. Chaque élément hors L3323-4 devient « À FAIRE
+   VALIDER (Loi Évin) ».
 6. Affichez le bloc prêt à copier, puis le récapitulatif :
 
 ```

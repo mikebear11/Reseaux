@@ -30,9 +30,18 @@ différent : de la profondeur, pas de la portée.
 
 ## Loi Évin
 
+**Règle absolue de la brasserie.** Dès qu'un contenu parle d'alcool, ou que
+sa photo ou sa vidéo s'y rapporte (bière, verre, bouteille, canette, fût,
+tireuse, cuve, comptoir, dégustation, brassage…), il porte la phrase
+**« L'abus d'alcool est dangereux pour la santé. »** Sans exception, même quand
+le texte ne nomme aucune bière. Dans le doute, mettez-la. Elle s'ajoute en fin
+de texte, ne compte pas comme appel à l'action, et `/ig-human` ne la retire
+jamais. Si `voice.md` donne une formule plus longue (par exemple « …, à
+consommer avec modération »), utilisez celle-là.
+
 Lisez `../ig-caption/loi-evin.md` avant toute séquence de brasserie.
 
-- Toute story qui montre ou nomme une bière porte le message sanitaire
+- Toute story qui parle d'alcool ou dont l'image s'y rapporte porte le message sanitaire
   « L'abus d'alcool est dangereux pour la santé », dans la zone de texte sûre.
 - Les sondages, quiz et curseurs n'incitent pas à boire (pas de « combien vous
   en buvez ce soir ? »). Faites voter sur ce que L3323-4 autorise : un houblon,
