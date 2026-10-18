@@ -17,9 +17,9 @@ Sources :
 ## Qui je suis
 
 - **Nom :** Brasserie de Sulauze / « Brasserie Sulauze » [P][S]
-- **Pseudo :** `@sulauze` (5,2 k abonnés, 481 publications) [P]. À CONFIRMER :
-  le site renvoie vers `instagram.com/brasseriesulauze` [S], qui n'est pas le
-  même nom.
+- **Pseudo :** `@sulauze` (5,2 k abonnés, 481 publications) [P]. Confirmé par
+  la brasserie le 18/10/2026. Le site renvoie à tort vers
+  `instagram.com/brasseriesulauze` [S] : lien à corriger sur sulauze.com.
 - **Bio actuelle :** « De l'orge à votre verre 🌾 / Brasserie artisanale · 2012
   · Miramas / Istres (13) / 👇 Boutique, visites & points de vente /
   wwww.sulauze.com » [P]. (Le lien de la bio contient « wwww », quatre w :
@@ -38,8 +38,10 @@ Sources :
   et Guillaume David [M]. À CONFIRMER.
 - Installée dans une bergerie de 300 ans du domaine de Sulauze à Miramas [M].
   À CONFIRMER.
-- Agriculture bio et biodynamique [M] ; le site parle de biodynamie [S].
-  À CONFIRMER : quelles bières sont certifiées AB, et par quel organisme.
+- **Plus en bio** (confirmé par la brasserie le 18/10/2026). L'article de 2022
+  [M] parle de bio et de biodynamie : c'est périmé. Ne jamais écrire « bio »
+  ni « biologique ». Le site parle encore de biodynamie [S] : ne pas
+  l'utiliser tant que la brasserie ne l'a pas confirmé.
 - Brassage au feu de bois, eau d'un forage dans la nappe de la Crau, houblon et
   malt en partie cultivés sur place, un brassin par an 100 % issu du domaine,
   drêches données aux cochons et taureaux du domaine [M]. À CONFIRMER, source
@@ -89,11 +91,10 @@ Voir `.claude/skills/ig-caption/loi-evin.md`.
 - **Message sanitaire utilisé :** « L'abus d'alcool est dangereux pour la
   santé. » Règle de la brasserie : sur tout contenu qui parle d'alcool ou dont
   l'image s'y rapporte, sans exception.
-- **Signes officiels de qualité ou d'origine :** À CONFIRMER. La brasserie se
-  dit bio [M]. Je ne sais pas si la mention « agriculture biologique » suffit
-  pour l'exception « terroir » de l'article L3323-3-1 : elle semble classée
-  parmi les « mentions valorisantes » du code rural, pas parmi les signes de
-  qualité et d'origine. À faire valider avant de s'en servir.
+- **Signes officiels de qualité ou d'origine :** plus de bio (18/10/2026) ;
+  aucun autre signe connu (AOP, IGP, label rouge…) : À CONFIRMER. Sans signe
+  officiel, l'exception « terroir » de l'article L3323-3-1 ne s'applique pas :
+  on s'en tient à ce que L3323-4 autorise.
 - **Attention au registre du site :** « lieu de rencontre, de partage et de
   bonne humeur » [S] relève de la convivialité, que l'article L3323-4 ne liste
   pas. Ne pas le reprendre tel quel dans un post qui montre de la bière.

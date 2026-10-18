@@ -5,10 +5,9 @@ Ce dépôt sert à gérer les réseaux sociaux de la Brasserie de Sulauze (Miram
 
 ## Compte géré
 
-- Instagram : `@sulauze` (« Brasserie Sulauze | bière artisanale »). Le site
-  sulauze.com renvoie vers `instagram.com/brasseriesulauze`, un autre nom :
-  on ne sait pas lequel est le bon tant que la brasserie ne l'a pas confirmé.
-  Voir `instagram/voice.md`.
+- Instagram : `@sulauze` (« Brasserie Sulauze | bière artisanale »), confirmé
+  par la brasserie le 18/10/2026. Le lien `instagram.com/brasseriesulauze` du
+  site sulauze.com n'est pas le bon compte (à corriger sur le site).
 - Compte voisin, à ne pas confondre : `@sulauze.beergarden` (le beergarden).
 
 ## Règles qui priment sur tout
@@ -16,9 +15,13 @@ Ce dépôt sert à gérer les réseaux sociaux de la Brasserie de Sulauze (Miram
 1. **Message sanitaire, toujours.** Tout contenu qui parle d'alcool, ou dont la
    photo ou la vidéo s'y rapporte, porte « L'abus d'alcool est dangereux pour
    la santé. » Détails : `.claude/skills/ig-caption/loi-evin.md`.
-2. **Ne rien inventer.** Aucun chiffre, prix, médaille, date ou nom de bière
+2. **Plus de bio.** La brasserie n'est plus en agriculture biologique
+   (confirmé le 18/10/2026). Ne jamais écrire « bio », « biologique » ni
+   afficher le logo AB, même si une ancienne source le dit. « Biodynamie » :
+   pas d'usage tant que la brasserie ne l'a pas confirmé.
+3. **Ne rien inventer.** Aucun chiffre, prix, médaille, date ou nom de bière
    qui ne vient pas de la brasserie ou d'une source citée. Sinon `{{à fournir}}`.
-3. **Publication : jamais sans un « oui » explicite** sur le contenu exact
+4. **Publication : jamais sans un « oui » explicite** sur le contenu exact
    (vidéo, légende, compte). Voir « Publication » ci-dessous.
 
 ## Fichiers de travail
