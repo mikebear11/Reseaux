@@ -1,97 +1,134 @@
 ---
 name: ig-story
 description: >-
-  Write the day's Instagram Stories - the frame-by-frame sequence, which
-  stickers to use where, and the one that moves people into the DMs. Use when
-  the user says "stories", "what do I post on my story", "story sequence",
-  "poll idea", "I have nothing to story about", or wants to sell something
-  without making a post about it.
+  Écrire les stories Instagram du jour : la séquence image par image, quel
+  sticker mettre où, et celui qui fait passer les gens en DM (message privé).
+  À utiliser quand l'utilisateur dit « stories », « qu'est-ce que je mets en
+  story », « une séquence de stories », « une idée de sondage », « je n'ai rien
+  à mettre en story », ou veut vendre quelque chose sans en faire un post.
 ---
 
 # ig-story
 
-Stories are not a smaller feed. The feed is how strangers find you. Stories are
-how the people who already follow you decide whether you are a person worth
-buying from, and they are the only surface on Instagram where a tap turns into
-a conversation in one move.
+Les stories ne sont pas un fil en plus petit. Le fil, c'est la façon dont des
+inconnus vous trouvent. Les stories, c'est la façon dont ceux qui vous suivent
+déjà décident si vous êtes quelqu'un à qui acheter, et c'est la seule surface
+d'Instagram où un tap devient une conversation en un geste.
 
-Nobody outside your followers sees these, so the job is completely different:
-depth, not reach.
+Personne en dehors de vos abonnés ne les voit, donc le travail est complètement
+différent : de la profondeur, pas de la portée.
 
-## The daily shape
+## Langue et ton
 
-Three to seven frames a day. Beyond about seven, the tap-forward rate climbs
-and the last frames play to nobody, which is exactly where people put the ask.
+- Rédigez en français.
+- Respectez le tutoiement ou le vouvoiement indiqué dans
+  `~/.claude/instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
+  réponse, vouvoyez. (Les stories parlent à une seule personne : « tu » ou
+  « vous », mais toujours au singulier dans l'intention.)
+- Typographie française : « guillemets », espace avant ; : ! ? acceptée. Pas de
+  tiret cadratin.
+
+## Loi Évin
+
+Lisez `../ig-caption/loi-evin.md` avant toute séquence de brasserie.
+
+- Toute story qui montre ou nomme une bière porte le message sanitaire
+  « L'abus d'alcool est dangereux pour la santé », dans la zone de texte sûre.
+- Les sondages, quiz et curseurs n'incitent pas à boire (pas de « combien vous
+  en buvez ce soir ? »). Faites voter sur ce que L3323-4 autorise : un houblon,
+  un arôme, une couleur, un nom de bière, un point de vente.
+- Montrez d'abord le brassage, les ingrédients, l'origine, les médailles, où
+  acheter. Tout le reste (fête, trinquer, humour) est signalé « À FAIRE VALIDER
+  (Loi Évin) » dans le récapitulatif.
+- Pas de mineur à l'image avec le produit, pas de parrainage, et un « Ajoutez
+  le vôtre » sur de l'alcool se fait valider : vous ne choisissez pas qui
+  répond. Collaboration d'influenceur payée : à faire valider.
+- Ne dites jamais qu'une séquence « respecte la Loi Évin ».
+
+## La forme quotidienne
+
+Trois à sept stories par jour. Au-delà d'environ sept, le taux de tap vers
+l'avant grimpe et les dernières passent devant personne, et c'est exactement là
+que les gens mettent leur demande.
 
 ```
-1       THE OPEN     something happening today, with a face or a hand in it.
-2-3     THE MIDDLE   the actual content: the process, the result, the mistake.
-4       THE ASK      one sticker. Poll, question box, quiz or link.
-5       THE CLOSE    the answer, the outcome, or tomorrow's setup.
+1       L'OUVERTURE   quelque chose qui se passe aujourd'hui, avec un visage
+                      ou une main dedans.
+2-3     LE MILIEU     le vrai contenu : le procédé, le résultat, l'erreur.
+4       LA DEMANDE    un sticker. Sondage, boîte à questions, quiz ou lien.
+5       LA CLÔTURE    la réponse, le résultat, ou la mise en place de demain.
 ```
 
-Put the ask at frame 4, not frame 7. Completion drops with every tap and the
-ask should be seen by the people who are still there.
+Mettez la demande en story 4, pas en story 7. On perd du monde à chaque tap, et
+la demande doit être vue par ceux qui sont encore là.
 
-## The stickers, and what each is actually for
+## Les stickers, et à quoi chacun sert vraiment
 
-| sticker | job | use when |
+| sticker | rôle | à utiliser quand |
 | --- | --- | --- |
-| **Poll** | the cheapest tap there is | you want volume of response, not information |
-| **Question box** | harvesting the exact words people use | you need content ideas or objections, verbatim |
-| **Quiz** | teaching by letting them be wrong | there is a common misconception in the niche |
-| **Slider** | vibe check | nothing important. Fun, low value |
-| **Link** | the only clickable surface besides the bio | there is somewhere real to go |
-| **Countdown** | a deadline people can subscribe to | a launch, a live, a close date |
-| **Add yours** | reach beyond your followers, occasionally | the prompt is one anyone in the niche can answer |
+| **Sondage** | le tap le moins cher qui existe | vous voulez du volume de réponses, pas de l'information |
+| **Boîte à questions** | récolter les mots exacts que les gens emploient | vous avez besoin d'idées de contenu ou d'objections, mot pour mot |
+| **Quiz** | apprendre en laissant se tromper | il existe une idée reçue répandue dans le domaine |
+| **Curseur** | prise de température | rien d'important. Amusant, peu de valeur |
+| **Lien** | la seule surface cliquable avec la bio | il y a un vrai endroit où aller |
+| **Compte à rebours** | une échéance à laquelle on peut s'abonner | un lancement, un live, une date de clôture |
+| **Ajoutez le vôtre** | de la portée au-delà de vos abonnés, de temps en temps | la consigne est une question à laquelle n'importe qui du domaine peut répondre |
 
-The question box is the most undervalued one in the list. Every answer is a
-caption, a Reel hook or a DM opener written in the audience's own words. Feed
-them to `/ig-reel` as formula #16.
+La boîte à questions est la plus sous-estimée de la liste. Chaque réponse est
+une légende, une accroche de Reel ou une ouverture de DM écrite avec les mots du
+public. Passez-les à `/ig-reel` comme formule #16 La question mot pour mot.
 
-## Rules
+## Règles
 
-- **A face or a hand in the first frame.** Text on a coloured background gets
-  tapped through, and the first frame decides whether the rest get watched.
-- **One idea per frame.** Reading a paragraph on a story is not a thing anyone
-  does.
-- **Keep text inside the middle.** On 1080x1920, nothing above y=250 or below
-  y=1600. The profile row sits on top and the reply bar sits underneath.
-- **Talk to one person.** "You" singular. Stories are the closest thing to a
-  DM that is not one.
-- **Do not repost your own feed post to stories with no comment.** It is the
-  single most ignored frame on the platform. If you are pointing at a post, say
-  what happened in the comments and why it is worth going back for.
-- **Sell on stories, not in posts.** Three frames of context, one frame of
-  offer, one frame of proof. That sequence sells more than a feed post about
-  the same thing and costs you no reach.
+- **Un visage ou une main dans la première story.** Du texte sur fond de
+  couleur se fait passer d'un tap, et la première story décide si les suivantes
+  seront regardées.
+- **Une idée par story.** Lire un paragraphe en story, personne ne le fait.
+- **Gardez le texte au centre.** Sur 1080x1920, rien au-dessus de y=250 ni
+  en dessous de y=1600. La ligne du profil est en haut et la barre de réponse en
+  bas. Le message sanitaire aussi reste dans cette zone.
+- **Parlez à une seule personne.** « Tu » ou « vous », mais à quelqu'un, pas à
+  une foule. Les stories sont ce qui ressemble le plus à un DM sans en être un.
+- **Ne repartagez pas votre propre post en story sans commentaire.** C'est la
+  story la plus ignorée de la plateforme. Si vous renvoyez vers un post, dites
+  ce qui s'est passé dans les commentaires et pourquoi ça vaut le coup d'y
+  retourner.
+- **Vendez en stories, pas en posts.** Trois stories de contexte, une d'offre,
+  une de preuve. Cette séquence vend plus qu'un post sur le même sujet et ne
+  vous coûte aucune portée.
 
-## The DM funnel, done honestly
+## L'entonnoir vers les DM, fait honnêtement
 
-The sequence that works: a story that names a problem, a question box or a poll
-that lets people say "that's me", and then a reply to each person who answered.
-The conversation starts because they spoke first.
+La séquence qui marche : une story qui nomme un problème, une boîte à questions
+ou un sondage qui permet de dire « c'est moi », puis une réponse à chaque
+personne qui a répondu. La conversation commence parce qu'ils ont parlé en
+premier.
 
-Automated keyword DM replies are a real, supported feature for professional
-accounts, through Instagram's own tools and approved partners. Bulk DMing
-people who did not interact is not, and it is what gets accounts restricted.
-The rule is simple: **they act first, then you reply.**
+Les réponses automatiques en DM sur mot-clé sont une fonctionnalité réelle et
+prise en charge pour les comptes professionnels, via les outils d'Instagram et
+des partenaires agréés. Envoyer des DM en masse à des gens qui n'ont pas
+interagi ne l'est pas, et c'est ce qui fait restreindre des comptes. La règle
+est simple : **ils agissent d'abord, ensuite vous répondez.** Pour une
+brasserie : pas de relance commerciale sur la bière à quelqu'un dont vous
+ignorez l'âge.
 
-## Output
+## Sortie
 
-The frames in order, each with what is on screen, what is said, and which
-sticker, plus what to do with the answers:
+Les stories dans l'ordre, chacune avec ce qui est à l'écran, ce qui est dit et
+quel sticker, plus quoi faire des réponses. Exemple fictif :
 
 ```
-STORIES  ·  Tuesday  ·  5 frames
+STORIES  ·  mardi  ·  5 stories
 
-1  [selfie, walking]      "Third refund request this year. Same reason."
-2  [screen recording]     the clause, highlighted
-3  [talking]              "Approval is a feeling. Delivery is a date."
-4  [poll]                 "Have you been burned by a late approval?"  Yes / Not yet
-5  [text on photo]        "Reply and I will send you the clause."
+1  [selfie, en marchant vers la cuve]   « Brassin de la blonde ce matin. On a changé un houblon. »
+2  [vidéo, la main dans les cônes]       le houblon, en gros plan
+3  [face caméra]                         « Plus d'agrumes, moins d'amertume. Ça s'entend au nez. »
+4  [sondage]                             « Vous la préférez comment ? »  Plus fruitée / Plus amère
+5  [texte sur photo de la bouteille]     « Répondez et je vous dis où la trouver samedi. »
+                                         « L'abus d'alcool est dangereux pour la santé. »
 
-After: everyone who votes Yes gets a reply. That is the whole funnel.
+Ensuite : chaque personne qui a voté reçoit une réponse. C'est tout l'entonnoir.
+loi Évin :  message sanitaire présent (stories 2 à 5) · 0 élément À FAIRE VALIDER
 ```
 
-Nothing is posted. The user posts it.
+Rien n'est publié. L'utilisateur publie ses stories.

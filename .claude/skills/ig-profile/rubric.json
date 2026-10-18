@@ -1,79 +1,79 @@
 {
   "version": "1.0",
   "total": 100,
-  "note": "Twelve items. Score each honestly - a generous score helps nobody. Most first-pass profiles land in the 30s and 40s. The weighting is deliberate: the name field, the first bio line and the pinned three are worth more than the photo, because they are what a stranger who arrived from one reel actually processes before deciding to follow.",
+  "note": "Douze critères. Notez chacun honnêtement : une note généreuse n'aide personne. La plupart des profils au premier passage tombent entre 30 et 49. La pondération est voulue : le champ nom, la première ligne de la bio et les trois épinglés valent plus que la photo, parce que c'est ce qu'un inconnu arrivé depuis un seul Reel traite réellement avant de décider de s'abonner.",
   "items": [
     {
       "id": "name_field",
       "points": 12,
-      "full_marks": "The name field (30 characters, the bold line, not the handle) carries the name plus what they do in words people search: 'Dana Ruiz | Proposal templates'. This field is indexed by Instagram search and most accounts waste it on a name alone.",
-      "common_fail": "Just a name, or a name with an emoji."
+      "full_marks": "Le champ nom (30 caractères, la ligne en gras, pas le nom de compte) porte le nom plus ce que la personne fait, avec des mots que les gens recherchent : « Camille Roux | Bière artisanale ». Ce champ est indexé par la recherche Instagram et la plupart des comptes le gaspillent avec un nom seul.",
+      "common_fail": "Un nom seul, ou un nom avec un emoji."
     },
     {
       "id": "bio_first_line",
       "points": 12,
-      "full_marks": "Line one names who this is for and what changes for them, in their words. Not a job title, not a list of adjectives, not three emoji separated by bars.",
-      "common_fail": "'Entrepreneur | Coffee lover | Dog dad'."
+      "full_marks": "La ligne 1 dit pour qui c'est et ce qui change pour eux, avec leurs mots. Pas un intitulé de poste, pas une liste d'adjectifs, pas trois emoji séparés par des barres.",
+      "common_fail": "« Entrepreneur | Fan de café | Papa d'un chien »."
     },
     {
       "id": "bio_body",
       "points": 8,
-      "full_marks": "The rest of the 150 characters carries one piece of proof or one specific offer, and reads as sentences rather than a pipe-separated list.",
-      "common_fail": "Keyword soup, or blank space."
+      "full_marks": "Le reste des 150 caractères porte une preuve ou une offre précise, et se lit comme des phrases plutôt que comme une liste séparée par des barres.",
+      "common_fail": "Une soupe de mots-clés, ou du vide."
     },
     {
       "id": "pinned_three",
       "points": 10,
-      "full_marks": "Three posts pinned to the top of the grid, doing three different jobs: the best proof, the clearest explanation of the offer, and the best introduction to the person. Not the three highest-view posts by accident.",
-      "common_fail": "Nothing pinned, so the top of the grid is whatever was posted last."
+      "full_marks": "Trois posts épinglés en haut de la grille, avec trois rôles différents : la meilleure preuve, l'explication la plus claire de l'offre, et la meilleure présentation de la personne. Pas les trois posts les plus vus, par hasard.",
+      "common_fail": "Rien d'épinglé, donc le haut de la grille montre ce qui a été publié en dernier."
     },
     {
       "id": "link",
       "points": 8,
-      "full_marks": "One destination that matches what the bio just promised. Up to five links are allowed; more than two is a menu, and a menu converts worse than a door.",
-      "common_fail": "A link tree with eleven options, or no link at all."
+      "full_marks": "Une seule destination qui correspond à ce que la bio vient de promettre. Jusqu'à cinq liens sont autorisés ; au-delà de deux, c'est un menu, et un menu convertit moins bien qu'une porte.",
+      "common_fail": "Une page de liens avec onze options, ou aucun lien."
     },
     {
       "id": "highlights",
       "points": 8,
-      "full_marks": "Four to six highlights named for the questions a buyer actually asks: Pricing, Results, How it works, About. Covers consistent. Nothing older than a year sitting at the front.",
-      "common_fail": "'Random', 'Life', 'Faves', or 14 highlights in no order."
+      "full_marks": "Quatre à six stories à la une, nommées d'après les questions qu'un acheteur pose vraiment : Tarifs, Résultats, Comment ça marche, À propos. Couvertures cohérentes. Rien de plus d'un an en tête.",
+      "common_fail": "« Divers », « La vie », « Favoris », ou 14 stories à la une sans ordre."
     },
     {
       "id": "grid_legibility",
       "points": 8,
-      "full_marks": "The first nine covers are legible at thumbnail size and say what the account is about without a single tap. Reel covers are chosen deliberately, not left as frame one.",
-      "common_fail": "Nine covers of a face mid-word with no text."
+      "full_marks": "Les neuf premières couvertures sont lisibles en vignette et disent de quoi parle le compte sans un seul tap. Les couvertures de Reels sont choisies délibérément, pas laissées sur la première image.",
+      "common_fail": "Neuf couvertures d'un visage en plein mot, sans texte."
     },
     {
       "id": "photo",
       "points": 6,
-      "full_marks": "Face fills roughly 60% of a circle that renders at about 40 pixels. Eyes visible, shot in the last two years, background not competing.",
-      "common_fail": "A full-body shot, a logo for a personal brand, or a photo taken at arm's length in a dark room."
+      "full_marks": "Le visage remplit environ 60 % d'un cercle qui s'affiche à environ 40 pixels. Yeux visibles, photo prise dans les deux dernières années, arrière-plan qui ne fait pas concurrence.",
+      "common_fail": "Une photo en pied, un logo pour une marque personnelle, ou une photo prise à bout de bras dans une pièce sombre."
     },
     {
       "id": "handle",
       "points": 6,
-      "full_marks": "Readable, sayable out loud, and the same handle as the other platforms. No stacked underscores or numbers standing in for letters.",
-      "common_fail": "A handle nobody can spell after hearing it once."
+      "full_marks": "Lisible, prononçable à voix haute, et le même nom de compte que sur les autres plateformes. Pas de tirets bas empilés ni de chiffres à la place de lettres.",
+      "common_fail": "Un nom de compte que personne ne sait écrire après l'avoir entendu une fois."
     },
     {
       "id": "category_contact",
       "points": 6,
-      "full_marks": "Professional account with a category that matches the offer, and contact buttons that work. Email that is checked, not the one from 2019.",
-      "common_fail": "Personal account, so there are no insights and no contact button."
+      "full_marks": "Compte professionnel avec une catégorie qui correspond à l'offre, et des boutons de contact qui fonctionnent. Une adresse e-mail consultée, pas celle de 2019.",
+      "common_fail": "Compte personnel, donc pas de statistiques ni de bouton de contact."
     },
     {
       "id": "recent_activity",
       "points": 10,
-      "full_marks": "Posted in the last seven days and replied to comments on the most recent post. An account that last posted in March reads as closed.",
-      "common_fail": "A five-week gap, or a wall of unanswered comments."
+      "full_marks": "A publié dans les sept derniers jours et a répondu aux commentaires du post le plus récent. Un compte dont le dernier post date de mars a l'air fermé.",
+      "common_fail": "Un trou de cinq semaines, ou un mur de commentaires sans réponse."
     },
     {
       "id": "story_presence",
       "points": 6,
-      "full_marks": "A story up right now, or at least most days. It is the difference between a profile and a person.",
-      "common_fail": "No ring, ever."
+      "full_marks": "Une story en ligne en ce moment, ou au moins la plupart des jours. C'est la différence entre un profil et une personne.",
+      "common_fail": "Jamais d'anneau."
     }
   ]
 }

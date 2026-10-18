@@ -1,67 +1,89 @@
 # voice.md
 
-Copy this to `~/.claude/instagram/voice.md` and fill it in. Every skill in the
-pack reads it. Ten minutes here is the difference between scripts you shoot and
-scripts you rewrite.
+Copiez ce fichier dans `~/.claude/instagram/voice.md` et remplissez-le. Tous
+les skills du pack le lisent. Dix minutes ici, c'est la différence entre des
+scripts que vous tournez et des scripts que vous réécrivez.
 
-If you would rather not fill it in by hand, send Claude three of your own reels
-or captions and say "write my voice.md from these". That works better than
-guessing at the answers.
+Si vous préférez ne pas le remplir à la main, envoyez à Claude trois de vos
+Reels ou légendes et dites « écris mon voice.md à partir de ça ». Ça marche
+mieux que de deviner les réponses.
 
-This file matters more on Instagram than anywhere else, because you have to say
-the words out loud. A line you would never say is not a draft, it is a retake.
+Ce fichier compte plus sur Instagram que n'importe où ailleurs, parce qu'il faut
+dire les mots à voix haute. Une phrase que vous ne diriez jamais n'est pas un
+brouillon, c'est une prise à refaire.
 
 ---
 
-## Who I am
+## Qui je suis
 
-- **Name:**
-- **Handle:**
-- **What I do, in one sentence:**
-- **Who I am talking to:** (be specific: "photographers charging under $2,000",
-  not "creatives")
-- **What I sell:**
+- **Nom :**
+- **Pseudo :**
+- **Ce que je fais, en une phrase :**
+- **À qui je parle :** (soyez précis : « cavistes et bistrots indépendants à
+  moins de 50 km de la brasserie », pas « les amateurs de bière »)
+- **Ce que je vends :**
 
-## What I sound like
+## Comment je parle
 
-- **Three of my own reels or captions that sound most like me:** (paste them)
-- **On camera I am:** (fast and loud / dry / calm / funny / deadpan)
-- **Words I actually use:**
-- **Words I would never say out loud:**
-- **Do I swear:** (yes / mild / no)
-- **Emoji in captions:** (never / one, rarely / freely)
-- **Face on camera:** (always / sometimes / faceless)
-- **Voiceover or to-camera:**
-- **Pace:** (words per minute, if you have timed yourself reading a script.
-  `beats.py --wpm` uses this. Most people are between 150 and 200.)
+- **Tutoiement ou vouvoiement :** (tu / vous. Les skills s'y tiennent partout.
+  Si c'est vide, ils vous le demandent une fois, puis vouvoient par défaut.)
+- **Trois de mes Reels ou légendes qui me ressemblent le plus :** (collez-les)
+- **Face caméra, je suis :** (rapide et fort / pince-sans-rire / calme / drôle /
+  impassible)
+- **Mots que j'emploie vraiment :**
+- **Mots que je ne dirais jamais à voix haute :**
+- **Est-ce que je jure :** (oui / un peu / non)
+- **Émojis dans les légendes :** (jamais / un, rarement / librement)
+- **Visage à l'écran :** (toujours / parfois / jamais)
+- **Voix off ou face caméra :**
+- **Débit de parole mesuré (mots/min) :** (chronométrez-vous en lisant un
+  script à voix haute et notez le chiffre. `beats.py --wpm` l'utilise. Le
+  défaut du script est 165 mots/min, une valeur de l'auteur qui n'a pas été
+  calibrée pour le français : votre propre mesure vaut mieux. La plupart des
+  gens sont entre 150 et 200.)
 
-## My positions
+## Mes positions
 
-Three to five things I believe that some of my audience does not. These are
-where the good reels come from.
+Trois à cinq choses que je crois et qu'une partie de mon audience ne croit pas.
+C'est de là que viennent les bons Reels.
 
 1.
 2.
 3.
 
-## Off limits
+## Hors limites
 
-- **Topics I do not post about:**
-- **Clients, numbers or names I cannot say publicly:**
-- **Claims I am not allowed to make:** (regulated industry, employer policy, NDA)
+- **Sujets dont je ne parle pas :**
+- **Clients, chiffres ou noms que je ne peux pas citer publiquement :**
+- **Affirmations que je n'ai pas le droit de faire :** (secteur réglementé,
+  politique de l'employeur, accord de confidentialité)
 
-## Proof I can use
+## Loi Évin
 
-Real numbers, outcomes and stories I am happy to put my name on. The skills will
-never invent one, so if this section is empty, every draft comes back with
-`{{your number}}` in it.
+Voir `.claude/skills/ig-caption/loi-evin.md`. Ces réponses ne valent pas
+validation juridique ; elles disent aux skills ce que vous utilisez déjà.
+
+- **Signes officiels de qualité ou d'origine de vos bières :** (AOP, IGP, autre
+  signe officiel, ou aucun. Précisez quelle bière porte quel signe. Si vous
+  n'en avez pas, écrivez « aucun » : l'exception « terroir » de L3323-3-1 ne
+  s'applique alors probablement pas.)
+- **Message sanitaire Loi Évin utilisé :** (la formule exacte que vous mettez
+  sur vos contenus, par exemple « L'abus d'alcool est dangereux pour la santé,
+  à consommer avec modération. »)
+
+## Preuves que je peux utiliser
+
+De vrais chiffres, résultats et histoires que je suis prêt à signer de mon nom.
+Les skills n'en inventeront jamais, donc si cette section est vide, chaque
+brouillon revient avec `{{votre chiffre}}` dedans.
 
 -
 -
 -
 
-## The ask
+## L'appel à l'action
 
-- **My keyword CTA, if I use one:** (one word, sayable, no spaces)
-- **What the keyword sends them:**
-- **Where my link goes:**
+- **Mon mot-clé à commenter, si j'en utilise un :** (un seul mot, facile à
+  dire, sans espace)
+- **Ce que le mot-clé leur envoie :**
+- **Où va mon lien :**

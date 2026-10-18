@@ -1,100 +1,139 @@
 ---
 name: ig-plan
 description: >-
-  Build the week on Instagram - what to post, which format, when, and who to
-  engage with. Use when the user says "plan my week", "what should I post",
-  "content calendar", "I have nothing to post about", or wants a posting
-  schedule and an engagement list.
+  Construire la semaine sur Instagram : quoi publier, sous quel format, quand,
+  et avec qui interagir. À utiliser quand l'utilisateur dit « planifie ma
+  semaine », « qu'est-ce que je publie ? », « calendrier éditorial », « je n'ai
+  rien à publier », ou veut un planning de publication et une liste
+  d'engagement.
 ---
 
 # ig-plan
 
-The control room. Everything else in this pack executes; this decides what gets
-executed. Run it once a week, on the same day.
+La salle de contrôle. Tout le reste du pack exécute ; ce skill décide de ce qui
+est exécuté. Lancez-le une fois par semaine, toujours le même jour.
 
-## Input
+## Langue et ton
 
-If `~/.claude/instagram/voice.md`, `swipe.md` and `log.md` exist, read them.
-The swipe file is the user's own evidence from `/ig-viral` about which formulas
-are landing in their niche right now, and it outranks anything in this file.
-The log stops the plan repeating a theme from the last fortnight.
+- Rédigez en français, plan compris (jours, formats, angles).
+- Respectez le tutoiement ou le vouvoiement indiqué dans
+  `~/.claude/instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
+  réponse, vouvoyez.
+- Typographie française : « guillemets », espace avant ; : ! ? acceptée, heures
+  au format 19h30. Pas de tiret cadratin.
+- Citez les formules d'accroche par leur numéro et leur nom français
+  (`name_fr` dans `ig-reel/hooks.json`), par exemple « #3 Personne ne vous
+  dit ».
 
-If they do not exist, ask for four things and write them down:
+## Loi Évin
 
-1. What the user sells, and to whom.
-2. The three or four themes they want to be known for.
-3. What actually happened this week: a client call, a number, a mistake, a
-   thing they built, an argument they had. This is where posts come from.
-4. Ten accounts worth being visible to.
+Lisez `../ig-caption/loi-evin.md` avant de planifier pour une brasserie.
 
-## What to post
+- Chaque créneau qui montre ou nomme une bière prévoit le message sanitaire
+  « L'abus d'alcool est dangereux pour la santé » (légende et visuel).
+- Choisissez d'abord des angles que L3323-4 autorise : brassage, ingrédients,
+  origine, degré, arômes, médailles, où acheter, comment servir. Ce sont aussi
+  les angles les plus concrets.
+- Tout angle qui en sort (fête, trinquer, humour, réussite sociale) est marqué
+  « À FAIRE VALIDER (Loi Évin) » dans le plan, sur la ligne du créneau.
+- Pas de mineur à l'image, pas de parrainage, pas de compte manifestement
+  destiné à la jeunesse dans la liste d'engagement. Toute collaboration
+  d'influenceur payée est marquée à faire valider.
+- Le plan ne dit jamais qu'une semaine « respecte la Loi Évin ».
 
-Four to five posts a week, and at least three of them Reels. Reels are the only
-format on Instagram that reliably reaches people who do not follow the account.
-Carousels go deep with the people who already do. Stories are daily and are
-planned separately.
+## Entrée
 
-Mix across the week, never two of the same type back to back:
+Si `~/.claude/instagram/voice.md`, `swipe.md` et `log.md` existent, lisez-les.
+Le fichier d'inspiration (swipe file) est la preuve propre à l'utilisateur, issue
+de `/ig-viral`, des formules qui marchent dans son domaine en ce moment, et il
+prime sur tout ce qui est écrit ici. Le journal empêche le plan de répéter un
+thème des deux dernières semaines.
 
-| type | share | job |
+S'ils n'existent pas, demandez quatre choses et notez-les :
+
+1. Ce que vend l'utilisateur, et à qui.
+2. Les trois ou quatre thèmes pour lesquels il veut être connu.
+3. Ce qui s'est réellement passé cette semaine : un appel client, un chiffre,
+   une erreur, quelque chose qu'il a construit, une dispute. C'est de là que
+   viennent les posts.
+4. Dix comptes auprès desquels il vaut la peine d'être visible.
+
+## Quoi publier
+
+Quatre à cinq posts par semaine, dont au moins trois Reels. Les Reels sont le
+seul format d'Instagram qui atteint de façon fiable des gens qui ne suivent pas
+le compte. Les carrousels vont en profondeur avec ceux qui suivent déjà. Les
+stories sont quotidiennes et se planifient à part.
+
+Mélangez sur la semaine, jamais deux posts du même type à la suite :
+
+| type | part | rôle |
 | --- | --- | --- |
-| **Proof** | 1 per week | something that happened, with a number. Reel. |
-| **Teach** | 1 to 2 per week | one thing the viewer can do today. Reel or carousel. |
-| **Opinion** | 1 per week | a position that could lose you followers. Reel. |
-| **Story** | 1 per fortnight | a scene with a cost. Reel. |
-| **Offer** | 1 per fortnight | what you sell, said plainly, no apology. Carousel or stories. |
+| **Preuve** | 1 par semaine | quelque chose qui s'est passé, avec un chiffre. Reel. |
+| **Apprendre** | 1 à 2 par semaine | une chose que le spectateur peut faire aujourd'hui. Reel ou carrousel. |
+| **Opinion** | 1 par semaine | une position qui pourrait vous faire perdre des abonnés. Reel. |
+| **Récit** | 1 toutes les deux semaines | une scène qui a un coût. Reel. |
+| **Offre** | 1 toutes les deux semaines | ce que vous vendez, dit simplement, sans excuse. Carrousel ou stories. |
 
-For each slot give: the theme, the specific angle from what actually happened
-this week, the format, and the hook formula number from `ig-reel/hooks.json`.
-Not a topic, an angle. "AI" is not a plan. "The proposal we lost because the
-draft had an em dash in it" is a Reel.
+Pour chaque créneau, donnez : le thème, l'angle précis tiré de ce qui s'est
+réellement passé cette semaine, le format, et le numéro de formule d'accroche
+de `ig-reel/hooks.json`. Pas un sujet, un angle. « La bière » n'est pas un plan.
+« Le brassin qu'on a jeté parce que la fermentation est partie à 26 °C » est un
+Reel.
 
-## When to post
+## Quand publier
 
-Post when the user's audience is awake and not at work. For most consumer
-audiences that is early evening local time; for a business audience, early
-morning.
+Publiez quand le public de l'utilisateur est réveillé et pas au travail. Pour
+la plupart des publics grand public, c'est en début de soirée, heure locale ;
+pour un public professionnel, tôt le matin.
 
-But say this plainly: **the hour matters far less than the first two seconds.**
-Instagram will keep showing a Reel for days if it performs, and will bury a
-well-timed one that does not. If the user is optimising posting times before
-their hooks work, they are polishing the wrong thing, and you should say so.
+Mais dites-le clairement : **l'heure compte bien moins que les deux premières
+secondes.** Instagram continuera de montrer un Reel pendant des jours s'il
+performe, et enterrera un Reel bien programmé qui ne performe pas. Si
+l'utilisateur optimise ses heures de publication avant que ses accroches
+fonctionnent, il polit la mauvaise chose, et vous devez le lui dire.
 
-Anchor times to the audience's timezone, not the user's, if those differ.
+Calez les heures sur le fuseau du public, pas sur celui de l'utilisateur, s'ils
+diffèrent.
 
-## The engagement round, which is not optional
+## La tournée d'engagement, qui n'est pas optionnelle
 
-20 minutes a day, before posting, not after. Build a list of 10:
+20 minutes par jour, avant de publier, pas après. Construisez une liste de 10 :
 
-- **5 reach** - accounts with an audience the user wants, where a good comment
-  gets seen. Comment early, before the thread is 200 deep.
-- **3 peers** - same size, same field. This is the group that reciprocates.
-- **2 buyers** - people who could actually buy. Comment for weeks before any
-  DM, and never pitch in a comment.
+- **5 portée** : des comptes dont l'audience intéresse l'utilisateur, où un bon
+  commentaire se voit. Commentez tôt, avant que le fil ait 200 réponses.
+- **3 pairs** : même taille, même domaine. C'est le groupe qui rend la pareille.
+- **2 acheteurs** : des gens qui pourraient réellement acheter (pour une
+  brasserie : cavistes, bars, restaurateurs, épiceries fines). Commentez
+  pendant des semaines avant tout DM, et ne vendez jamais dans un commentaire.
 
-Hand the list to `/ig-comment`.
+Passez la liste à `/ig-comment`.
 
-## Output
+## Sortie
+
+Exemple fictif :
 
 ```
-WEEK OF SEP 15
+SEMAINE DU 15 SEPTEMBRE
 
-MON  engage only  (20 min, list below)
-TUE  7:30pm  REEL      PROOF    #5  Time Collapse   - 5hr proposal to 20 min
-WED  stories only + engage
-THU  7:00pm  CAROUSEL  TEACH    Job B caption       - the 4-slide clause breakdown
-FRI  7:30pm  REEL      OPINION  #2  Negative Command - stop doing discovery calls
-SAT  -
-SUN  6:00pm  REEL      STORY    #21 Mid-Sentence    - the refund email
+LUN  engagement seul  (20 min, liste ci-dessous)
+MAR  19h30  REEL       PREUVE     #5  Le temps écrasé          - 6 semaines de garde en 30 secondes
+MER  stories seules + engagement
+JEU  19h00  CARROUSEL  APPRENDRE  légende Travail B            - les 4 ajouts de houblon, slide par slide
+VEN  19h30  REEL       OPINION    #2  L'ordre négatif          - arrêtez de servir une IPA glacée
+SAM  -
+DIM  18h00  REEL       RÉCIT      #21 Le début en pleine phrase - le brassin jeté à 26 °C
 
-STORIES  every day, 3 to 5 frames, question box on Thursday.
+STORIES  tous les jours, 3 à 5 stories, boîte à questions le jeudi.
 
-ENGAGE  (5 reach / 3 peers / 2 buyers)
+ENGAGEMENT  (5 portée / 3 pairs / 2 acheteurs)
   ...
 
-Say "write Tuesday" and I will draft it.
+loi Évin :  message sanitaire prévu sur les 4 posts · 1 élément À FAIRE VALIDER (VEN : ton d'opinion)
+
+Dites « écris mardi » et je le rédige.
 ```
 
-Write the plan to `~/.claude/instagram/plan.md` so the other skills can read
-it. Nothing is scheduled or posted anywhere. This is a plan and the user runs
-it.
+Écrivez le plan dans `~/.claude/instagram/plan.md` pour que les autres skills
+puissent le lire. Rien n'est programmé ni publié nulle part. C'est un plan, et
+c'est l'utilisateur qui le met en œuvre.

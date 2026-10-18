@@ -24,6 +24,10 @@ Usage
   pbpaste | python3 humanize.py - --report
   python3 humanize.py draft.txt --json
   python3 humanize.py draft.txt -o clean.txt
+  python3 humanize.py brouillon.txt --lang fr --report
+
+French: --lang auto (the default) detects it and loads slop.fr.json instead of
+slop.json. French typography is left alone: the space before ; : ! ? stays.
 """
 
 import argparse
@@ -35,6 +39,29 @@ import unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 LEX = os.path.join(HERE, "slop.json")
+LEX_FR = os.path.join(HERE, "slop.fr.json")
+
+try:                                              # same detector as ig-reel
+    sys.path.insert(0, os.path.join(HERE, "..", "ig-reel"))
+    from hookscore import detect_lang             # noqa: E402
+except Exception:                                 # ig-human copied on its own
+    detect_lang = None
+
+
+def pick_lang(text, lang):
+    if lang != "auto":
+        return lang
+    if detect_lang is None:
+        print("note: ig-reel/hookscore.py not found, assuming English. Pass --lang fr.",
+              file=sys.stderr)
+        return "en"
+    return detect_lang(text)
+
+
+def find_pattern(find):
+    """A lexicon entry as a regex: whole words, any apostrophe, any run of spaces."""
+    pat = re.escape(find).replace(r"\ ", " ").replace(" ", r"\s+")
+    return re.compile(r"\b" + pat.replace("'", "['’]") + r"\b", re.IGNORECASE)
 
 URL_RE = re.compile(r"https?://\S+|www\.\S+|\S+@\S+\.\S+")
 SENT_RE = re.compile(r"[^.!?\n]+[.!?]*")
@@ -126,15 +153,14 @@ def _match_case(src, repl):
     return repl
 
 
-def pass_lexical(text, lex):
+def pass_lexical(text, lex, lang="en"):
     """Replace slop words and phrases. Longest first so phrases win."""
     hits = []
     entries = sorted(lex["phrases"] + lex["words"],
                      key=lambda e: len(e["find"]), reverse=True)
     for entry in entries:
         find = entry["find"]
-        pattern = re.compile(r"\b" + re.escape(find).replace(r"\ ", r"\s+") + r"\b",
-                             re.IGNORECASE)
+        pattern = find_pattern(find)
         found = pattern.findall(text)
         if not found:
             continue
@@ -145,10 +171,12 @@ def pass_lexical(text, lex):
     # punctuation behind ("system. ." or a line that now opens on a comma),
     # and that reads worse than the slop did.
     text = re.sub(r"[ \t]{2,}", " ", text)
-    text = re.sub(r"(?m)^[ \t]*(?:[,.;:]+[ \t]*)+", "", text)
+    text = re.sub(r"(?m)^[ \t]*(?:[,.;:!?]+[ \t]*)+", "", text)
     text = re.sub(r"(?m)^[ \t](?=\S)", "", text)       # one space left by a deletion.
                                                       # Deeper indents are deliberate.
-    text = re.sub(r"\s+([,.;:!?])", r"\1", text)
+    text = re.sub(r"([.!?])[ \t]+,[ \t]*", r"\1 ", text)   # ". , la" left by a deleted opener
+    # French puts a space before ; : ! ? and that space is correct, not debris.
+    text = re.sub(r"\s+([,.])" if lang == "fr" else r"\s+([,.;:!?])", r"\1", text)
     text = re.sub(r",\s*([,.;:!?])", r"\1", text)      # an em dash became a comma,
                                                       # then the clause after it went
     text = text.replace("...", "\x00ELL\x00")          # protect real ellipses
@@ -196,19 +224,19 @@ def restore_capitals(original, text):
     a deliberately lower-case voice is a style, not an artefact, and shouting
     over it would be exactly the kind of thing this script exists to stop.
     """
-    starts = re.findall(r"(?:^|[.!?]\s+|\n)\s*([A-Za-z])", original)
+    starts = re.findall(r"(?:^|[.!?]\s+|\n)\s*([^\W\d_])", original)
     if not starts or sum(1 for c in starts if c.isupper()) * 2 < len(starts):
         return text
-    return re.sub(r"(?:^|(?<=[.!?] )|(?<=[.!?]\n)|(?<=\n))\s*([a-z])",
+    return re.sub(r"(?:^|(?<=[.!?] )|(?<=[.!?]\n)|(?<=\n))\s*([a-zà-öø-ÿ])",
                   lambda m: m.group(0)[:-1] + m.group(1).upper(), text)
 
 
-def humanize(text, lex):
+def humanize(text, lex, lang="en"):
     raw_for_case = text
     text, urls = protect_urls(text)
     text, inv = pass_invisible(text, lex)
     text, typo = pass_typographic(text, lex)
-    text, lexi = pass_lexical(text, lex)
+    text, lexi = pass_lexical(text, lex, lang)
     text = restore_capitals(raw_for_case, text)
     text = restore_urls(text, urls)
     return text.strip() + "\n", {
@@ -259,12 +287,14 @@ def main():
     ap.add_argument("-o", "--out", help="write cleaned text here instead of stdout")
     ap.add_argument("--report", action="store_true", help="print what changed, to stderr")
     ap.add_argument("--json", action="store_true", help="emit {text, report} as JSON")
-    ap.add_argument("--lexicon", default=LEX, help="path to slop.json")
+    ap.add_argument("--lexicon", help="path to a lexicon (default: slop.json or slop.fr.json)")
+    ap.add_argument("--lang", choices=["auto", "fr", "en"], default="auto")
     args = ap.parse_args()
 
     raw = sys.stdin.read() if args.input == "-" else open(args.input, encoding="utf-8").read()
-    lex = load_lexicon(args.lexicon)
-    clean, report = humanize(raw, lex)
+    lang = pick_lang(raw, args.lang)
+    lex = load_lexicon(args.lexicon or (LEX_FR if lang == "fr" else LEX))
+    clean, report = humanize(raw, lex, lang)
 
     if args.json:
         print(json.dumps({"text": clean, "report": report}, indent=2, ensure_ascii=False))

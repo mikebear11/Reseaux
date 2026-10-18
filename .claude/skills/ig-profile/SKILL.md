@@ -1,82 +1,123 @@
 ---
 name: ig-profile
 description: >-
-  Score an Instagram profile out of 100 against a 12-part rubric and rewrite
-  the parts that lose points - name field, bio, link, highlights, pinned three,
-  grid. Use when the user says "optimize my profile", "fix my bio", "score my
-  Instagram", "why don't people follow me", or pastes their profile and asks how
-  it reads.
+  Noter un profil Instagram sur 100 selon une grille en 12 points et réécrire
+  les parties qui perdent des points : champ nom, bio, lien, stories à la une,
+  les trois épinglés, grille. À utiliser quand l'utilisateur dit « optimise mon
+  profil », « corrige ma bio », « note mon Instagram », « pourquoi les gens ne
+  s'abonnent pas ? », ou colle son profil et demande comment il se lit.
 ---
 
 # ig-profile
 
-Almost everybody optimises the wrong thing here. The profile is not a
-storefront people browse. It is a **decision screen**, arrived at from one
-reel, and it gets about three seconds to answer one question: is there more of
-that here, and is it for me.
+Presque tout le monde optimise la mauvaise chose ici. Le profil n'est pas une
+vitrine qu'on parcourt. C'est un **écran de décision**, où l'on arrive depuis un
+seul Reel, et il a environ trois secondes pour répondre à une question : est-ce
+qu'il y a d'autres choses comme ça ici, et est-ce que c'est pour moi.
 
-## Input
+## Langue et ton
 
-Ask the user to paste or screenshot: the name field, the handle, the bio, what
-the link points to, the highlight names, what is pinned, and the first nine
-grid covers. A screenshot of the top of the profile plus the first two grid
-rows is enough for a first pass.
+- Rédigez en français, réécritures comprises.
+- Respectez le tutoiement ou le vouvoiement indiqué dans
+  `~/.claude/instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
+  réponse, vouvoyez. La bio suit le même choix.
+- Typographie française : « guillemets », espace avant ; : ! ? acceptée. Pas de
+  tiret cadratin. Le français est plus long : les limites de 30 et 150
+  caractères ne bougent pas, comptez-les.
 
-Do not log into Instagram on their behalf.
+## Loi Évin
 
-## Score it
+Lisez `../ig-caption/loi-evin.md` avant de réécrire le profil d'une brasserie.
 
-Read `rubric.json` in this folder. Twelve items, 100 points, each with what
-full marks looks like and how it usually fails. Score every item, show the
-table, give the total. Be honest. Most profiles land in the 30s and 40s on the
-first pass and a generous score is useless.
+- La bio, le champ nom et les noms des stories à la une s'appuient sur ce que
+  L3323-4 autorise : nom et adresse de la brasserie, origine, mode de brassage,
+  médailles, où acheter.
+- Si le profil montre ou nomme une bière (bio, couvertures, épinglés), prévoyez
+  le message sanitaire « L'abus d'alcool est dangereux pour la santé » sur les
+  posts concernés.
+- Tout le reste (promesse d'ambiance, de fête, humour) est signalé « À FAIRE
+  VALIDER (Loi Évin) » dans le récapitulatif. Pas de mineur sur la photo ni sur
+  les couvertures, pas de parrainage, collaboration d'influenceur payée à faire
+  valider.
+- Ne dites jamais qu'un profil « respecte la Loi Évin ».
+
+## Entrée
+
+Demandez à l'utilisateur de coller ou de capturer : le champ nom, le nom de
+compte, la bio, la destination du lien, les noms des stories à la une, ce qui
+est épinglé, et les neuf premières couvertures de la grille. Une capture du haut
+du profil plus les deux premières lignes de la grille suffit pour un premier
+passage.
+
+Ne vous connectez pas à Instagram à sa place.
+
+## Notez-le
+
+Lisez `rubric.json` dans ce dossier. Douze critères, 100 points, chacun avec ce
+à quoi ressemble la note maximale et comment il échoue d'habitude. Notez chaque
+critère, montrez le tableau, donnez le total. Soyez honnête. La plupart des
+profils tombent entre 30 et 49 au premier passage, et une note généreuse ne sert
+à rien.
 
 ```
-PROFILE SCORE  38/100
+NOTE DU PROFIL  38/100
 
-  name field       2/12   name only, no words anyone searches
-  bio first line   3/12   three nouns and a coffee emoji
-  pinned three     0/10   nothing pinned
-  highlights       2/8    "Random", "Life", "2023"
-  grid legibility  4/8    six of nine covers are a face mid-sentence
+  champ nom          2/12   un nom seul, aucun mot que quelqu'un recherche
+  bio, ligne 1       3/12   trois noms communs et un emoji de chope
+  les trois épinglés 0/10   rien d'épinglé
+  stories à la une   2/8    « Divers », « La vie », « 2023 »
+  lisibilité grille  4/8    six couvertures sur neuf sont un visage en pleine phrase
   ...
 ```
 
-## Then rewrite, in this order
+## Puis réécrivez, dans cet ordre
 
-Fix in descending order of points lost. Do not rewrite everything at once, the
-user has to actually go and change each of these.
+Corrigez par ordre décroissant de points perdus. Ne réécrivez pas tout d'un
+coup : l'utilisateur doit réellement aller changer chacun de ces champs.
 
-**1. The name field (30 characters).** The bold line under the photo, not the
-handle. This is the field Instagram search matches against, and most accounts
-put a name in it and nothing else. Format that works:
-`{Name} | {what you do, in searched words}`. Give three options.
+**1. Le champ nom (30 caractères).** La ligne en gras sous la photo, pas le nom
+de compte. C'est le champ qu'interroge la recherche Instagram, et la plupart des
+comptes n'y mettent qu'un nom. Format qui fonctionne :
+`{Nom} | {ce que vous faites, avec les mots recherchés}`. Donnez trois options.
 
-**2. Bio line one.** Who this is for and what changes. Not a job title, not
-adjectives, not a pipe-separated list of identities. The rest of the 150
-characters carries one piece of proof or one plain offer.
+**2. La ligne 1 de la bio.** Pour qui c'est, et ce qui change. Pas un intitulé
+de poste, pas des adjectifs, pas une liste d'identités séparées par des barres.
+Le reste des 150 caractères porte une preuve ou une offre claire.
 
-**3. The pinned three.** Three slots, three different jobs: the best proof, the
-clearest explanation of the offer, the best introduction to the person. This is
-the highest-leverage fix on the whole profile and it takes four taps. An
-unpinned grid shows whatever was posted last, which is a coin flip.
+**3. Les trois épinglés.** Trois emplacements, trois rôles différents : la
+meilleure preuve, l'explication la plus claire de l'offre, la meilleure
+présentation de la personne (ou de la brasserie). C'est la correction qui a le
+plus d'effet sur tout le profil, et elle prend quatre taps. Une grille sans
+épinglés montre ce qui a été publié en dernier, autant jouer à pile ou face.
 
-**4. Highlights.** Four to six, named for the questions a buyer asks: Pricing,
-Results, How it works, About. Not "Random". Delete the rest.
+**4. Les stories à la une.** Quatre à six, nommées d'après les questions que
+pose un acheteur : Tarifs, Résultats, Comment ça marche, À propos (pour une
+brasserie, par exemple : Où nous trouver, Nos bières, Le brassage, À propos).
+Pas « Divers ». Supprimez le reste.
 
-**5. The link.** One destination that matches what the bio just promised. Five
-are allowed; two is already a menu and a menu converts worse than a door.
+**5. Le lien.** Une seule destination, qui correspond à ce que la bio vient de
+promettre. Cinq sont autorisés ; deux, c'est déjà un menu, et un menu convertit
+moins bien qu'une porte.
 
-**6. Grid covers.** The first nine at thumbnail size. Reel covers get chosen,
-not left as whatever frame one was. Four words of text on a cover makes a grid
-readable in one glance.
+**6. Les couvertures de la grille.** Les neuf premières, en vignette. Les
+couvertures de Reels se choisissent, on ne laisse pas la première image par
+défaut. Quatre mots de texte sur une couverture rendent une grille lisible d'un
+coup d'œil.
 
-## Output
+## Sortie
 
-Score table, then the rewrites as copy-ready blocks in fix-first order, each
-run through `/ig-human`. Re-score at the end and show the delta honestly. If
-the rewrite reaches 84 and not 98, say 84, and say what the rest needs, which
-is usually a grid, a story habit and a pinned post that does not exist yet.
-None of that is a rewrite.
+Le tableau de notes, puis les réécritures en blocs prêts à copier, dans l'ordre
+des corrections, chacune passée dans `/ig-human`. Renotez à la fin et montrez
+l'écart honnêtement. Si la réécriture atteint 84 et pas 98, dites 84, et dites
+ce qu'il faut pour le reste : en général une grille, une habitude de stories et
+un post épinglé qui n'existe pas encore. Rien de tout cela n'est une
+réécriture.
 
-Nothing is saved to Instagram by this skill. The user edits each field.
+Terminez par la ligne Loi Évin, par exemple :
+
+```
+loi Évin :  message sanitaire à ajouter sur 2 épinglés · 1 élément À FAIRE VALIDER (bio : « l'apéro du vendredi »)
+```
+
+Ce skill n'enregistre rien sur Instagram. L'utilisateur modifie chaque champ
+lui-même.

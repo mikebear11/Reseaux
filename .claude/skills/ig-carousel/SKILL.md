@@ -1,103 +1,145 @@
 ---
 name: ig-carousel
 description: >-
-  Build an Instagram carousel - the cover that earns the swipe, slide-by-slide
-  copy, and the 1080x1350 files to upload. Use when the user says "carousel",
-  "slides", "swipe post", "turn this into a carousel", or has a list-shaped or
-  step-shaped idea that would die as a single image.
+  Construire un carrousel Instagram : la couverture qui mérite le swipe, le
+  texte slide par slide et les fichiers 1080x1350 à publier. À utiliser quand
+  l'utilisateur dit « carrousel », « fais-moi un carrousel sur… », « des
+  slides », « un post à faire défiler », « transforme ça en carrousel », ou a
+  une idée en forme de liste ou d'étapes qui mourrait en image seule.
 ---
 
 # ig-carousel
 
-Carousels are the highest-dwell format on the grid, because a swipe is an
-interaction and a scroll is not. They also get a second chance: Instagram can
-show a carousel again starting from a later slide to someone who did not engage
-the first time, so slide two has to stand on its own as well.
+Les carrousels sont le format de la grille où l'on reste le plus longtemps,
+parce qu'un swipe est une interaction et qu'un défilement n'en est pas une. Ils
+ont aussi une deuxième chance : Instagram peut remontrer un carrousel en
+commençant par une slide plus loin à quelqu'un qui n'a pas interagi la première
+fois. La slide 2 doit donc tenir debout toute seule elle aussi.
 
-The format rewards one idea broken into steps. It punishes a caption cut into
-pieces.
+Le format récompense une idée découpée en étapes. Il punit une légende coupée en
+morceaux.
 
-## When to use it instead of a Reel
+## Langue et ton
 
-Use a carousel when the idea has **sequence and needs to be re-read**: steps, a
-framework with parts, a before and after, a list worth screenshotting. Use a
-Reel when the idea has motion, a face, or a payoff that has to be seen
-happening.
+- Rédigez en français.
+- Respectez le tutoiement ou le vouvoiement indiqué dans
+  `~/.claude/instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
+  réponse, vouvoyez.
+- Typographie française : « guillemets », espace avant ; : ! ? acceptée. Pas de
+  tiret cadratin. Le français est plus long que l'anglais : comptez les mots,
+  les limites ci-dessous ne bougent pas.
 
-If the idea is one claim, it is neither. Hand it to `/ig-reel` and say so.
+## Loi Évin
+
+Lisez `../ig-caption/loi-evin.md` avant tout carrousel de brasserie.
+
+- Toute slide qui montre ou nomme une bière porte le message sanitaire
+  « L'abus d'alcool est dangereux pour la santé », en petit mais lisible, et
+  la légende le porte aussi.
+- Un carrousel en étapes se prête bien à ce que L3323-4 autorise : brassage,
+  ingrédients, origine, degré, arômes, couleur, médailles, où acheter.
+  Construisez d'abord là-dessus.
+- Tout le reste (fête, trinquer, humour, séduction, sport) est signalé « À
+  FAIRE VALIDER (Loi Évin) » dans le récapitulatif.
+- Pas de mineur sur aucune slide, pas de parrainage. Un carrousel fait avec un
+  influenceur payé se fait valider avant.
+- Ne dites jamais que le carrousel « respecte la Loi Évin ».
+
+## Quand le préférer à un Reel
+
+Choisissez un carrousel quand l'idée a **une séquence et doit être relue** : des
+étapes, une méthode en plusieurs parties, un avant / après, une liste qui mérite
+une capture d'écran. Choisissez un Reel quand l'idée a du mouvement, un visage,
+ou une chute qu'il faut voir se produire.
+
+Si l'idée tient en une seule affirmation, ce n'est ni l'un ni l'autre.
+Passez-la à `/ig-reel` et dites-le.
 
 ## Structure
 
-6 to 10 slides. The cap is 20 and 20 is almost always a book nobody finishes.
-Under 5 and the swipe never starts.
+6 à 10 slides. Le maximum est 20, et 20, c'est presque toujours un livre que
+personne ne finit. Sous 5, le swipe ne démarre jamais.
 
 ```
-1         COVER     the hook. 6 words or fewer, at a size that is legible in
-                    the grid at thumbnail. One line of promise under it.
-2         THE STAKE why this matters, in one sentence. This slide is also a
-                    second cover, so it cannot be setup.
-3 to N    ONE IDEA PER SLIDE. A headline of 3 to 7 words, at most 25 words
-                    under it. If a slide needs a paragraph, it is two slides.
-N+1       RECAP     the whole thing as a list. This is the screenshot slide.
-LAST      CTA       one action. Save, comment a keyword, or follow. One.
+1         COUVERTURE  l'accroche. 6 mots maximum, à une taille lisible dans la
+                      grille en vignette. Une ligne de promesse en dessous.
+2         L'ENJEU     pourquoi ça compte, en une phrase. Cette slide est aussi
+                      une deuxième couverture, elle ne peut donc pas être de la
+                      mise en place.
+3 à N     UNE IDÉE PAR SLIDE. Un titre de 3 à 7 mots, 25 mots au plus en
+                      dessous. Si une slide demande un paragraphe, ce sont
+                      deux slides.
+N+1       RÉCAP       le tout sous forme de liste. C'est la slide de la
+                      capture d'écran.
+DERNIÈRE  APPEL       une seule action. Enregistrer, commenter un mot-clé, ou
+                      s'abonner. Une.
 ```
 
-## Slide copy rules
+## Règles pour le texte des slides
 
-- **The cover is 80% of the result.** Six words. Big. Nothing on the deck saves
-  a cover nobody swipes.
-- **Design for the grid crop.** The profile grid crops to a portrait rectangle
-  that is taller than it is wide, and the exact ratio has moved more than once.
-  Build at 1080x1350 and keep the cover text well inside the middle, clear of
-  the outer 120 pixels on every side, and the crop stops mattering.
-- **Number the slides** (3/8). Completion goes up when people can see the end.
-- **No slide is a paragraph.** If it cannot be said in 25 words, split it.
-- **The recap slide is the one people screenshot and send.** Sends are the
-  strongest signal you can earn. Make it standalone and readable with no
-  context.
-- **The handle on every slide**, small, bottom corner. Screenshots travel
-  without you.
-- **Alt text on the cover at minimum.** It is read by screen readers and by
-  Instagram.
+- **La couverture fait 80 % du résultat.** Six mots. En gros. Rien dans le reste
+  du carrousel ne sauve une couverture que personne ne fait défiler.
+- **Concevez pour le recadrage de la grille.** La grille du profil recadre en un
+  rectangle portrait, plus haut que large, et le rapport exact a changé plus
+  d'une fois. Construisez en 1080x1350 et gardez le texte de la couverture bien
+  au centre, à l'écart des 120 pixels extérieurs de chaque côté : le recadrage
+  cesse alors de compter.
+- **Numérotez les slides** (3/8). Les gens vont plus souvent au bout quand ils
+  voient la fin.
+- **Aucune slide n'est un paragraphe.** Si ça ne se dit pas en 25 mots,
+  coupez en deux.
+- **La slide récap est celle qu'on capture et qu'on envoie.** Les partages sont
+  le signal le plus fort que vous puissiez obtenir. Rendez-la autonome et
+  lisible sans contexte.
+- **Le nom du compte sur chaque slide**, en petit, dans un coin du bas. Les
+  captures d'écran voyagent sans vous.
+- **Du texte alternatif au moins sur la couverture.** Il est lu par les lecteurs
+  d'écran et par Instagram.
+- **Le message sanitaire sur chaque slide où la bière apparaît**, à l'écart des
+  120 pixels extérieurs pour qu'il survive au recadrage.
 
-## Building the files
+## Construire les fichiers
 
-Instagram wants 1080x1350 (4:5), JPEG or PNG, up to 20 items. Build it as HTML
-and print each slide:
+Instagram veut du 1080x1350 (4:5), en JPEG ou PNG, jusqu'à 20 éléments.
+Construisez en HTML et imprimez chaque slide :
 
 ```bash
-# one <section> per slide, 1080x1350, page-break-after: always
-# then Chrome headless --print-to-pdf, or any HTML-to-image you already use
+# une <section> par slide, 1080x1350, page-break-after: always
+# puis Chrome headless --print-to-pdf, ou tout outil HTML vers image déjà utilisé
 ```
 
-Write the HTML with `width:1080px; height:1350px`, a single accent colour, and
-type no smaller than 32px, because this is read on a phone at a third of its
-real size. If the project has a brand skill or a design system, use it and do
-not invent a palette.
+Écrivez le HTML avec `width:1080px; height:1350px`, une seule couleur d'accent,
+et un corps de texte jamais inférieur à 32px, parce que tout cela se lit sur un
+téléphone au tiers de sa taille réelle. Si le projet a un skill de marque ou un
+design system, utilisez-le et n'inventez pas de palette.
 
-## Output
+## Sortie
 
-The slide-by-slide copy first, as a numbered list the user can read in ten
-seconds and edit before anything is rendered. Then the **caption**, which for a
-carousel is Job B in `/ig-caption`: the caption is doing work here, because the
-cover has already used its six words.
+D'abord le texte slide par slide, en liste numérotée que l'utilisateur peut lire
+en dix secondes et modifier avant que quoi que ce soit ne soit généré. Puis la
+**légende**, qui pour un carrousel est le Travail B de `/ig-caption` : la
+légende travaille ici, parce que la couverture a déjà utilisé ses six mots.
 
-Run both through `/ig-human`. Build the files only after the user approves the
-copy.
+Passez les deux dans `/ig-human`. Ne construisez les fichiers qu'après
+validation du texte par l'utilisateur.
+
+Exemple fictif :
 
 ```
-CAROUSEL  ·  8 slides
+CARROUSEL  ·  8 slides
 
-1  COVER   THE $18,000 CLAUSE
-           One line I now put in every contract.
-2  STAKE   I approved the work. They asked for the money back nine days later.
-3          WHAT IT SAYS
-           Payment on delivery, not on approval.
+1  COUVERTURE  4 HOUBLONS, 1 SEULE IPA
+               Ce qu'on met dans la cuve, dans l'ordre.
+2  ENJEU       Le même houblon donne deux bières selon le moment où on l'ajoute.
+3              À L'ÉBULLITION
+               L'amertume. 60 minutes, pas une de moins.
 ...
-7  RECAP   All four lines, in order.
-8  CTA     Comment CONTRACT and I will send the full clause.
+7  RÉCAP       Les quatre ajouts, dans l'ordre.
+8  APPEL       Commentez HOUBLON et je vous envoie la fiche de brassage.
 
-Caption: Job B, hook in line 1, one ask, 3 tags.
+Mention sur les slides 1, 3 à 8 : « L'abus d'alcool est dangereux pour la santé. »
+Légende : Travail B, accroche en ligne 1, un seul appel, 3 hashtags.
+loi Évin :  message sanitaire présent (slides + légende) · 0 élément À FAIRE VALIDER
 ```
 
-Nothing is uploaded. The user posts it.
+Rien n'est mis en ligne. L'utilisateur publie le carrousel.

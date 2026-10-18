@@ -39,8 +39,10 @@ WORD_RE = re.compile(r"[A-Za-z0-9$%'’-]+")
 try:                                              # optional: score the hooks too
     sys.path.insert(0, os.path.join(HERE, "..", "ig-reel"))
     from hookscore import run as score_hook       # noqa: E402
+    from hookscore import detect_lang             # noqa: E402
 except Exception:                                 # ig-viral copied on its own
     score_hook = None
+    detect_lang = None
 
 
 def load_formulas(path):
@@ -50,17 +52,22 @@ def load_formulas(path):
         return None
     by_id = {h["id"]: h for h in d["hooks"]}
     order = d.get("classify_order") or sorted(by_id)
-    return [(by_id[i]["id"], by_id[i]["name"],
-             re.compile(by_id[i]["match"], re.IGNORECASE)) for i in order if i in by_id]
+    # French hooks are matched against match_fr and named with name_fr.
+    return [(by_id[i]["id"], by_id[i]["name"], by_id[i].get("name_fr", by_id[i]["name"]),
+             re.compile(by_id[i]["match"], re.IGNORECASE),
+             re.compile(by_id[i]["match_fr"], re.IGNORECASE) if by_id[i].get("match_fr") else None)
+            for i in order if i in by_id]
 
 
-def classify(hook, formulas):
+def classify(hook, formulas, lang="en"):
     if not formulas:
         return None, "unclassified"
-    for fid, name, pattern in formulas:
+    for fid, name, name_fr, pattern, pattern_fr in formulas:
+        if lang == "fr" and pattern_fr and pattern_fr.search(hook):
+            return fid, name_fr
         if pattern.search(hook):
-            return fid, name
-    return None, "unclassified"
+            return fid, name_fr if lang == "fr" else name
+    return None, "non classée" if lang == "fr" else "unclassified"
 
 
 def read_rows(path):
@@ -97,7 +104,8 @@ def analyse(rows, formulas):
         base = r.get("median") or r.get("followers") or 0
         r["baseline"] = base
         r["outlier"] = round(r["views"] / base, 2) if base else None
-        r["formula_id"], r["formula"] = classify(r["hook"], formulas)
+        r["lang"] = detect_lang(r["hook"]) if detect_lang else "en"
+        r["formula_id"], r["formula"] = classify(r["hook"], formulas, r["lang"])
         r["words"] = len(WORD_RE.findall(r["hook"]))
         if score_hook:
             _, overall, verdict, _ = score_hook(r["hook"])
@@ -125,7 +133,7 @@ def analyse(rows, formulas):
         "bottom_hook_score": med(bottom, "hook_score"),
         "top_words": med(top, "words"),
         "bottom_words": med(bottom, "words"),
-        "unclassified": sum(1 for r in ranked if r["formula"] == "unclassified"),
+        "unclassified": sum(1 for r in ranked if r["formula_id"] is None),
     }
 
 

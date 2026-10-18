@@ -19,13 +19,27 @@ Usage
   python3 caption.py caption.txt --keywords "proposal software,client contract"
   pbpaste | python3 caption.py -
   python3 caption.py caption.txt --json
+  python3 caption.py legende.txt --lang fr --keywords "bière artisanale,brasserie"
+
+French: --lang auto (the default) detects it and adds the French calls to
+action. The ÉVIN check (--evin auto|on|off) fails a caption that talks about
+alcohol without the health warning required by article L3323-4 of the Code de
+la santé publique. It checks that one sentence and nothing else: see
+loi-evin.md in this folder for what the law allows a post to say.
 """
 
 import argparse
 import json
+import os
 import re
 import sys
 import textwrap
+
+try:                                              # same detector as ig-reel
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "ig-reel"))
+    from hookscore import detect_lang             # noqa: E402
+except Exception:                                 # ig-caption copied on its own
+    detect_lang = None
 
 LIMIT = 2200             # Instagram's hard caption limit.
 TRUNCATE = 125           # Roughly where the feed cuts to "... more".
@@ -35,12 +49,13 @@ HASHTAG_LIMIT = 5        # Instagram's cap per post or reel since 18 Dec 2025,
                          # rather than many generic ones, can improve both your
                          # content's performance and people's experience".
 
-HASHTAG_RE = re.compile(r"(?:^|\s)(#[A-Za-z0-9_]+)")
+HASHTAG_RE = re.compile(r"(?:^|\s)(#\w+)")         # \w: "#bièrecraft" is one tag
 MENTION_RE = re.compile(r"(?:^|\s)(@[A-Za-z0-9_.]+)")
 LINK_RE = re.compile(r"https?://\S+|\bwww\.\S+|\b[a-z0-9-]+\.(?:com|co|io|net|org|ai|app)/\S*",
                      re.IGNORECASE)
 EMOJI_RE = re.compile(r"[\U0001F300-\U0001FAFF☀-➿←-⇿️]")
-CONCRETE_RE = re.compile(r"\$\s?\d|\b\d[\d,.]*\b|(?<!^)\b[A-Z][a-z]{2,}\b", re.MULTILINE)
+CONCRETE_RE = re.compile(r"[$€]\s?\d|\b\d[\d,.]*\b|(?<!^)\b[A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]{2,}\b",
+                         re.MULTILINE)
 
 ASKS = [
     (re.compile(r"(?i)\bcomment (?:the word |\")?[A-Z0-9]{2,}\b"), "comment a keyword"),
@@ -53,9 +68,37 @@ ASKS = [
     (re.compile(r"(?i)\btell me\b|\bwhat would you\b|\bwhich one\b"), "answer a question"),
 ]
 
+ASKS_FR = [
+    (re.compile(r"(?i:commente[zs]?|[ée]cri(?:s|vez)|tape[zs]?)\s+(?:(?i:le mot)\s+)?[«\"“]?\s*"
+                r"[A-Z0-9ÀÂÇÉÈÊËÎÏÔÛÙ]{2,}\b"), "comment a keyword"),
+    (re.compile(r"(?i)\b(?:en (?:mp|dm|message privé)|[ée]cri(?:s|vez)[- ]moi"
+                r"|envoie[zs]?[- ]moi un (?:message|dm|mp))\b"), "DM me"),
+    (re.compile(r"(?i)\b(?:enregistre[zs]?|sauvegarde[zs]?)[- ]?(?:ce|cette|ça|le|la|les)?\b(?:\s|$|[.!])"),
+     "save this"),
+    (re.compile(r"(?i)\bpartage[zs]? (?:ce|cette|ça|le|la|à|avec)\b"), "share this"),
+    (re.compile(r"(?i)\babonne[sz]?[- ](?:toi|vous)\b"), "follow"),
+    (re.compile(r"(?i)\blien (?:en|dans (?:la|ma)) bio\b"), "link in bio"),
+    (re.compile(r"(?i)\b(?:swipe[zs]?|fai(?:s|tes) défiler)\b"), "swipe or tap"),
+    (re.compile(r"(?i)\b(?:dis[- ]moi|dites[- ](?:moi|nous)|laquelle|lequel|tu préfères|vous préférez)\b"
+                r"|\bet (?:vous|toi)\s?\?"), "answer a question"),
+    (re.compile(r"(?i)\b(?:pass(?:e|ez) (?:nous voir|à la brasserie|l[ae] goûter|les goûter)"
+                r"|ven(?:ez|ir) (?:l[ae] |les )?(?:goûter|déguster)|réserve[zs]?|commande[zs]?)\b"),
+     "visit or order"),
+]
+
+# Loi Évin. Words that make a caption a caption about alcohol, in either
+# language: the law applies to the post, not to the language it is in.
+ALCOHOL_RE = re.compile(
+    r"(?i)\b(?:bières?|ipa|neipa|stout|porter|lager|pils|brasserie|brassins?|brassée?s?|alcools?"
+    r"|degrés?|vins?|cidres?|cocktails?|apéro|pintes?|fûts?|houblons?|malts?"
+    r"|beers?|brewery|brewed|ale|wine|alcohol)\b|\d+(?:[.,]\d+)?\s?%\s?(?:vol|alc)")
+HEALTH_RE = re.compile(r"(?i)abus d['’]alcool est dangereux pour la santé")
+
 FILLER_TAGS = {"#viral", "#fyp", "#explore", "#explorepage", "#foryou", "#foryoupage",
                "#trending", "#instagood", "#love", "#follow", "#like4like", "#reels",
-               "#reelsinstagram", "#viralreels", "#instadaily"}
+               "#reelsinstagram", "#viralreels", "#instadaily",
+               "#pourtoi", "#pourtoii", "#tendance", "#viralfrance", "#abonnetoi",
+               "#jaime", "#instafrance"}
 
 
 def visible_window(text, cut):
@@ -76,7 +119,9 @@ def render_box(window, truncated, out=sys.stdout, width=52):
     print("  +" + "-" * (width + 2 - len(tail) - 2) + f" {tail} " + "+", file=out)
 
 
-def analyse(text, cut=TRUNCATE, keywords=None):
+def analyse(text, cut=TRUNCATE, keywords=None, lang="auto", evin="auto"):
+    if lang == "auto":
+        lang = detect_lang(text) if detect_lang else "en"
     text = text.rstrip()
     stripped = text.strip()
     chars = len(stripped)
@@ -88,7 +133,9 @@ def analyse(text, cut=TRUNCATE, keywords=None):
     emoji = EMOJI_RE.findall(stripped)
     window = visible_window(stripped, cut)
     truncated = chars > cut
-    asks = [name for pattern, name in ASKS if pattern.search(stripped)]
+    asks = [name for pattern, name in ASKS + (ASKS_FR if lang == "fr" else [])
+            if pattern.search(stripped)]
+    asks = list(dict.fromkeys(asks))
     filler = [t for t in tags if t.lower() in FILLER_TAGS]
     keywords = [k.strip() for k in (keywords or []) if k.strip()]
 
@@ -165,12 +212,22 @@ def analyse(text, cut=TRUNCATE, keywords=None):
             + (f", {len(in_window)} in the visible window" if found else "")
             + (f". Missing: {', '.join(missing)}" if missing else ""))
 
+    alcohol = bool(ALCOHOL_RE.search(stripped))
+    if evin == "on" or (evin == "auto" and alcohol):
+        if HEALTH_RE.search(stripped):
+            add("ÉVIN", "PASS", "health warning present (\"l'abus d'alcool est dangereux pour la "
+                                "santé\"). Only that sentence is checked, see loi-evin.md")
+        else:
+            add("ÉVIN", "FAIL", "talks about alcohol with no health warning. Art. L3323-4 Code de "
+                                "la santé publique: add \"L'abus d'alcool est dangereux pour la "
+                                "santé\". See loi-evin.md")
+
     fails = sum(1 for c in checks if c["status"] == "FAIL")
     warns = sum(1 for c in checks if c["status"] == "WARN")
     verdict = "FIX" if fails else ("REVIEW" if warns else "READY")
 
     return {
-        "characters": chars, "limit": LIMIT, "truncate_at": cut,
+        "characters": chars, "limit": LIMIT, "truncate_at": cut, "lang": lang,
         "visible": window, "truncated": truncated,
         "first_line_chars": len(first_line),
         "hashtags": tags, "mentions": mentions, "links": links,
@@ -199,10 +256,14 @@ def main():
                     help=f"characters shown before '... more' (default {TRUNCATE})")
     ap.add_argument("--keywords", default="", help="comma-separated terms you want to be found for")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--lang", choices=["auto", "fr", "en"], default="auto")
+    ap.add_argument("--evin", choices=["auto", "on", "off"], default="auto",
+                    help="Loi Évin health-warning check (auto: when the caption mentions alcohol)")
     args = ap.parse_args()
 
     raw = sys.stdin.read() if args.input == "-" else open(args.input, encoding="utf-8").read()
-    a = analyse(raw, cut=args.truncate, keywords=args.keywords.split(","))
+    a = analyse(raw, cut=args.truncate, keywords=args.keywords.split(","),
+                lang=args.lang, evin=args.evin)
     if args.json:
         print(json.dumps(a, indent=2, ensure_ascii=False))
     else:

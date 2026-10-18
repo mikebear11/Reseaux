@@ -19,22 +19,42 @@ Usage
   python3 beats.py script.txt --wpm 185 --target 45
   pbpaste | python3 beats.py -
   python3 beats.py script.txt --json
+  python3 beats.py script.txt --lang fr --wpm 180
+
+French: --lang auto (the default) detects it. The 165 wpm default and the 3s /
+4s limits come from the English original and have not been measured on French
+speech. Time yourself once and pass --wpm.
 """
 
 import argparse
 import json
+import os
 import re
 import sys
 
-WORD_RE = re.compile(r"[A-Za-z0-9$%'’-]+")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from hookscore import detect_lang, norm      # noqa: E402  same folder
+
+WORD_RE = re.compile(r"[\w$%€'’-]+")
 SENT_RE = re.compile(r"[^.!?]+[.!?]*")
-CONCRETE_RE = re.compile(r"\$\s?\d|\b\d[\d,.]*\b|(?<!^)\b[A-Z][a-z]{2,}\b", re.MULTILINE)
+CONCRETE_RE = re.compile(r"[$€]\s?\d|\b\d[\d,.]*\b|(?<!^)\b[A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]{2,}\b",
+                         re.MULTILINE)
 STOPWORDS = {
     "the", "a", "an", "and", "or", "but", "if", "of", "to", "in", "on", "for",
     "with", "that", "this", "it", "is", "are", "was", "were", "be", "been",
     "you", "your", "i", "my", "me", "we", "our", "they", "them", "he", "she",
     "so", "just", "not", "no", "do", "did", "does", "have", "has", "had",
     "will", "can", "at", "as", "by", "from", "out", "up", "off", "one", "all",
+}
+STOPWORDS_FR = {
+    "le", "la", "les", "un", "une", "des", "du", "de", "et", "ou", "mais", "si",
+    "à", "au", "aux", "en", "dans", "sur", "pour", "par", "avec", "sans", "que",
+    "qui", "ce", "cet", "cette", "ces", "est", "sont", "était", "être", "a",
+    "ai", "as", "ont", "avoir", "je", "tu", "il", "elle", "on", "nous", "vous",
+    "ils", "elles", "me", "te", "se", "mon", "ma", "mes", "ton", "ta", "tes",
+    "son", "sa", "ses", "notre", "nos", "votre", "vos", "leur", "leurs", "ne",
+    "pas", "plus", "y", "ça", "là", "c", "j", "l", "d", "n", "s", "t", "m",
+    "fait", "faire", "tout", "tous", "très", "bien", "aussi", "comme", "quand",
 }
 
 HOOK_WINDOW = 3.0        # seconds. Past this, the thumb has already decided.
@@ -43,13 +63,15 @@ ABSTRACT_RUN = 3         # beats in a row with nothing checkable in them.
 
 
 def words(text):
-    # "$18,000" is one word when it is spoken, so it is one word here too.
-    return WORD_RE.findall(re.sub(r"(?<=\d),(?=\d)", "", text))
+    # "$18,000" and "18 000 €" are one word when spoken, so one word here too.
+    text = re.sub(r"(?<=\d),(?=\d)", "", text)
+    text = re.sub(r"(?<=\d)[ \u00a0\u202f](?=\d{3}\b)", "", text)
+    return [w for w in WORD_RE.findall(text) if w.strip("-'’")]
 
 
-def pretty(token):
+def pretty(token, sep=","):
     """Put the thousands separator back for display."""
-    return re.sub(r"(\d)(?=(\d{3})+$)", r"\1,", token)
+    return re.sub(r"(\d)(?=(\d{3})+$)", r"\1" + sep, token)
 
 
 def tc(seconds):
@@ -82,7 +104,10 @@ def split_beats(raw, wps):
     return beats
 
 
-def analyse(raw, wpm=165, target=None):
+def analyse(raw, wpm=165, target=None, lang="auto"):
+    if lang == "auto":
+        lang = detect_lang(raw)
+    stop = STOPWORDS_FR if lang == "fr" else STOPWORDS
     wps = wpm / 60.0
     beats = split_beats(raw, wps)
     if not beats:
@@ -146,9 +171,9 @@ def analyse(raw, wpm=165, target=None):
             run, start = 0, None
 
     # Does the last line hand you back to the first one?
-    first = {w.lower() for w in words(rows[0]["text"]) if w.lower() not in STOPWORDS}
-    last = {w.lower() for w in words(rows[-1]["text"]) if w.lower() not in STOPWORDS}
-    loop = sorted(pretty(w) for w in first & last)
+    first = {norm(w) for w in words(rows[0]["text"]) if norm(w) not in stop}
+    last = {norm(w) for w in words(rows[-1]["text"]) if norm(w) not in stop}
+    loop = sorted(pretty(w, " " if lang == "fr" else ",") for w in first & last)
     if loop:
         notes.append(f"Loops: the last beat repeats \"{', '.join(loop[:3])}\" from the hook. "
                      "Second watches are free reach.")
@@ -167,7 +192,7 @@ def analyse(raw, wpm=165, target=None):
                          "or shoot it short. Short is usually right.")
 
     return {
-        "wpm": wpm, "target": target,
+        "wpm": wpm, "target": target, "lang": lang,
         "total_seconds": round(total, 2),
         "total_words": sum(r["words"] for r in rows),
         "beats": rows,
@@ -197,10 +222,11 @@ def main():
     ap.add_argument("--wpm", type=float, default=165, help="speaking rate (default 165)")
     ap.add_argument("--target", type=float, help="target length in seconds")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--lang", choices=["auto", "fr", "en"], default="auto")
     args = ap.parse_args()
 
     raw = sys.stdin.read() if args.input == "-" else open(args.input, encoding="utf-8").read()
-    a = analyse(raw, wpm=args.wpm, target=args.target)
+    a = analyse(raw, wpm=args.wpm, target=args.target, lang=args.lang)
     if not a:
         print("empty script", file=sys.stderr)
         sys.exit(2)

@@ -15,19 +15,41 @@ Ils sont chargés automatiquement quand Claude Code est ouvert dans ce dépôt :
 Aucun skill ne publie sur Instagram : ils rédigent, vous publiez.
 Les scripts Python n'utilisent que la bibliothèque standard et n'accèdent pas au réseau.
 
+### Adaptation française
+
+Les 13 skills sont traduits et adaptés au français. Les 6 scripts détectent la
+langue du texte (`--lang auto|fr|en`) ; sur un texte anglais, ils donnent
+exactement le même résultat que l'original (vérifié sur les exemples de l'auteur).
+
+- `hookscore.py`, `beats.py` : listes de mots françaises (enjeux, ouvertures
+  faibles, impératifs, nombres dits à l'oral), montants en €, « 18 000 € »
+  compté comme un mot, élisions (« l'erreur », « j'ai »).
+- `hooks.json` : chaque formule a un nom, un modèle, un exemple et une regex
+  de détection en français (`*_fr`). Les exemples sont fictifs.
+- `caption.py` : appels à l'action français, hashtags accentués
+  (`#bièreartisanale`), et contrôle **ÉVIN** : échec si la légende parle
+  d'alcool sans « L'abus d'alcool est dangereux pour la santé ».
+- `humanize.py`, `detect.py` : lexique français `slop.fr.json` ; la
+  typographie française (’, « », espace avant ; : ! ?) n'est plus comptée
+  comme empreinte machine ; la voix est mesurée sur les marques de l'oral.
+- `ig-caption/loi-evin.md` : ce que dit la Loi Évin pour un post de brasserie,
+  avec les articles sourcés. Les skills qui produisent du contenu s'y réfèrent.
+
 ### Limites connues
 
-- **Tout est en anglais.** Les scripts `hookscore.py`, `detect.py`, `humanize.py`
-  et la détection des appels à l'action de `caption.py` reposent sur des listes de
-  mots anglais. Sur un texte français, leurs scores sont faussés (ex. « raté »
-  n'est pas reconnu comme enjeu, « on / vous » ne comptent pas comme adresse).
-  `caption.py` reste fiable pour la longueur, la troncature à 125 caractères,
-  les hashtags (plafond de 5 depuis le 18/12/2025) et les liens.
+- **Rien n'est calibré sur du français réel.** Les seuils (5 à 12 mots,
+  165 mots/min, scores de passage) sont ceux de l'auteur, mesurés en anglais.
+  Le lexique `slop.fr.json` et les regex `match_fr` sont écrits à la main,
+  pas mesurés sur un corpus.
+- **La sortie des scripts reste en anglais** (PASS, STRONG, weakest…). Claude
+  la résume en français.
+- **Le contrôle ÉVIN ne vérifie qu'une phrase**, le message sanitaire. Il ne
+  dit pas qu'un post est conforme. Ce n'est pas un avis juridique.
 - Les fichiers de travail (`voice.md`, `log.md`, `swipe.md`, `plan.md`) sont
   écrits dans `~/.claude/instagram/`, qui n'est pas conservé dans une session
   cloud éphémère. Copiez-les dans le dépôt si vous voulez les garder.
 
 ### Démarrer
 
-Remplir `templates/voice.md` (votre ton, votre cible, vos chiffres réels), puis
-le copier dans `~/.claude/instagram/voice.md`.
+Remplir `templates/voice.md` (tutoiement ou vouvoiement, cible, vrais
+chiffres, message sanitaire), puis le copier dans `~/.claude/instagram/voice.md`.

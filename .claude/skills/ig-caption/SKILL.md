@@ -1,119 +1,173 @@
 ---
 name: ig-caption
 description: >-
-  Write the Instagram caption - the line that survives the "... more" cut, the
-  body, the single ask, the search terms and the three hashtags - and lint it
-  before it goes out. Use when the user says "write the caption", "caption this",
-  "what do I put in the description", has a reel or a carousel ready and needs
-  the text, or asks about hashtags.
+  Écrire la légende Instagram : la ligne qui survit à la coupure « … plus », le
+  corps, l'appel à l'action unique, les termes de recherche et jusqu'à 5
+  hashtags, puis la vérifier avant publication. À utiliser quand l'utilisateur
+  dit « écris la légende », « fais-moi une légende pour ce post », « qu'est-ce
+  que je mets en description », « quels hashtags », a un Reel ou un carrousel
+  prêt et a besoin du texte, ou pose une question sur les hashtags.
 ---
 
 # ig-caption
 
-One tool lives in this folder and it runs:
+Un outil vit dans ce dossier, et il se lance comme ceci :
 
 ```bash
 python3 caption.py caption.txt
-python3 caption.py caption.txt --keywords "client proposals,agency pricing"
+python3 caption.py caption.txt --keywords "bière artisanale,bière de saison"
+python3 caption.py caption.txt --lang fr --evin on
 ```
 
-It prints the caption the way the feed prints it: the first 125 characters in a
-box, everything else behind the tap. Read that box before you read anything
-else you wrote.
+Il affiche la légende comme le fil l'affiche : les 125 premiers caractères dans
+un cadre, tout le reste derrière le tap. Lisez ce cadre avant de relire quoi que
+ce soit d'autre de ce que vous avez écrit.
 
-## First, decide which job this caption has
+Options : `--lang auto|fr|en` (défaut `auto` : détecte la langue du texte, et
+reconnaît les appels à l'action français) et `--evin auto|on|off` (contrôle
+`ÉVIN`, voir plus bas).
 
-This is the decision that ruins captions when it is skipped.
+## Langue et ton
 
-**Job A: the video already hooked them.** A Reel carries its own hook in the
-first two seconds, spoken and on screen. The caption is not a second hook and
-competing with the video is how you lose both. Its job is the ask, the context
-that makes the ask make sense, and the words people search.
+- Rédigez en français.
+- Respectez le tutoiement ou le vouvoiement indiqué dans
+  `~/.claude/instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
+  réponse, vouvoyez.
+- Typographie française : « guillemets », apostrophe ’ ou ', espace avant ; : ! ?
+  acceptée. Pas de tiret cadratin.
 
-**Job B: the caption is the content.** A photo, a single image, a carousel
-cover that opens a loop. Here line one is the hook and it works exactly like a
-Reel hook: concrete, short, and cut off at a cliff rather than mid-clause.
+## Loi Évin
 
-Ask which one you are writing. If the user has a Reel with a strong hook,
-write A and say why.
+Lisez `../ig-caption/loi-evin.md` (le fichier `loi-evin.md` de ce dossier) avant
+toute légende de brasserie.
 
-## The shape
+- Toute légende qui montre ou nomme une bière porte le message sanitaire
+  « L'abus d'alcool est dangereux pour la santé ». Mettez-le aussi sur le
+  visuel quand le produit est montré.
+- Appuyez la légende d'abord sur ce que L3323-4 autorise : degré, origine,
+  ingrédients, brassage, arômes, couleur, médailles, où acheter.
+- Tout le reste (fête, trinquer, humour, séduction, sport, réussite sociale)
+  est signalé « À FAIRE VALIDER (Loi Évin) » dans le récapitulatif.
+- Pas de mineurs, pas de parrainage. Une collaboration d'influenceur payée
+  (en argent ou en produits) se fait valider avant.
+- Ne dites jamais qu'une légende « respecte la Loi Évin ». Dites ce qui a été
+  vérifié et ce qui ne l'a pas été.
+
+## D'abord, décidez quel travail fait cette légende
+
+C'est la décision qui ruine les légendes quand on la saute.
+
+**Travail A : la vidéo les a déjà accrochés.** Un Reel porte sa propre accroche
+dans les deux premières secondes, dite et en texte à l'écran. La légende n'est
+pas une deuxième accroche, et faire concurrence à la vidéo, c'est perdre les
+deux. Son travail : l'appel à l'action, le contexte qui lui donne du sens, et
+les mots que les gens recherchent.
+
+**Travail B : la légende est le contenu.** Une photo, une image seule, une
+couverture de carrousel qui ouvre une boucle. Ici, la ligne 1 est l'accroche et
+elle fonctionne exactement comme une accroche de Reel : concrète, courte, et
+coupée sur un suspense plutôt qu'au milieu d'une proposition.
+
+Demandez-vous lequel vous écrivez. Si l'utilisateur a un Reel avec une accroche
+forte, écrivez A et dites pourquoi.
+
+## La forme
 
 ```
-Line 1      125 characters of visible space. Job A: the ask, plainly.
-            Job B: the hook.
-            Never a greeting, never a hashtag, never an emoji as the first
-            character.
-Body        short paragraphs, one line of white space between each. Two to six
-            of them. This is where the search terms live.
-The ask     one. Comment a keyword, save it, or DM. One.
-Hashtags    up to five, on their own line at the bottom, or none.
+Ligne 1     125 caractères visibles. Travail A : l'appel à l'action, simplement.
+            Travail B : l'accroche.
+            Jamais une salutation, jamais un hashtag, jamais un emoji en
+            premier caractère.
+Corps       paragraphes courts, une ligne vide entre chacun. Deux à six.
+            C'est là que vivent les termes de recherche.
+L'appel     un seul. Commenter un mot-clé, enregistrer, ou envoyer un DM. Un.
+Message     « L'abus d'alcool est dangereux pour la santé », dès qu'une bière
+sanitaire   est montrée ou nommée.
+Hashtags    jusqu'à 5, sur leur propre ligne en bas, ou aucun.
 ```
 
-Limit is 2,200 characters and almost nothing needs 2,200. A caption that earns
-the tap and then delivers 600 characters beats one that delivers 1,800.
+La limite est de 2 200 caractères et presque rien n'en a besoin. Une légende qui
+mérite le tap puis livre 600 caractères bat une légende qui en livre 1 800.
 
-## Hashtags, honestly
+## Les hashtags, honnêtement
 
-Hashtags are not a reach lever any more, and the platform has now said so with
-a product change. **Instagram capped hashtags at five per post on 18 December
-2025**, down from thirty, telling creators that "using fewer (up to 5) more
-targeted hashtags, rather than many generic ones" performs better. Adam Mosseri
-had already said in February 2025 that hashtags do not work to increase reach
-and are a label, not a distribution lever.
+Les hashtags ne sont plus un levier de portée, et la plateforme l'a maintenant
+dit par un changement de produit. **Instagram a plafonné les hashtags à cinq par
+post le 18 décembre 2025**, contre trente auparavant, en expliquant aux
+créateurs qu'utiliser « moins de hashtags (jusqu'à 5), plus ciblés, plutôt que
+beaucoup de hashtags génériques » fonctionne mieux. Adam Mosseri avait déjà dit
+en février 2025 que les hashtags n'augmentent pas la portée : ce sont des
+étiquettes, pas un levier de diffusion.
 
-So: up to five, specific, as topic labels. If the user has a block of twenty
-saved in their notes app, that block is now dead weight and the linter will
-fail it.
+Donc : jusqu'à 5, précis, comme étiquettes de sujet. Si l'utilisateur garde un
+bloc de vingt hashtags dans ses notes, ce bloc est désormais un poids mort et le
+linter le fera échouer.
 
-`#viral`, `#fyp`, `#explorepage`, `#foryou` describe nothing. Cut them.
+`#viral`, `#fyp`, `#explorepage`, `#foryou`, `#pourtoi` ne décrivent rien.
+Coupez-les.
 
-## Search terms matter more than hashtags now
+## Les termes de recherche comptent plus que les hashtags
 
-Instagram search reads the caption text. So the phrase the user wants to be
-found for goes in the caption as a phrase a human would type, in a sentence
-that reads normally. "Client proposals" as words in line three, not
-"#clientproposals" in a block at the bottom.
+La recherche Instagram lit le texte de la légende. Donc l'expression pour
+laquelle l'utilisateur veut être trouvé va dans la légende, telle qu'un humain
+la taperait, dans une phrase qui se lit normalement. « Bière artisanale » en
+toutes lettres en ligne 3, pas « #bièreartisanale » dans un bloc en bas.
 
-Ask for two or three of those terms, then pass them to the linter:
+Demandez deux ou trois de ces termes, puis passez-les au linter :
 
 ```bash
-python3 caption.py draft.txt --keywords "client proposals,agency pricing"
+python3 caption.py brouillon.txt --keywords "bière artisanale,bière de saison"
 ```
 
-## Rules
+## Règles
 
-- **No link in the caption.** Captions are not clickable. A URL in the body is
-  dead text that says "I do not use this platform". Bio or DM.
-- **One ask.** Two asks is the same as none. `caption.py` counts them.
-- **The keyword ask needs a keyword people can type.** One word, no spaces, no
-  emoji, and say it out loud in the video too. `Comment CONTRACT` works.
-  `Comment "the contract guide"` does not.
-- **Write the first comment separately** if there is a link. Say so in the
-  receipt.
-- **Emoji as punctuation, not decoration.** The linter flags anything over
-  4 per 100 characters.
-- **Alt text is worth 20 seconds.** For carousels and photos, write it. It is
-  read by screen readers and by Instagram.
+- **Pas de lien dans la légende.** Les légendes ne sont pas cliquables. Une URL
+  dans le corps est du texte mort qui dit « je n'utilise pas cette
+  plateforme ». Bio ou DM.
+- **Un seul appel à l'action.** Deux appels, c'est comme aucun. `caption.py`
+  les compte, y compris en français.
+- **L'appel à commenter un mot-clé exige un mot-clé que les gens peuvent
+  taper.** Un mot, sans espace, sans emoji, et dites-le aussi à voix haute dans
+  la vidéo. `Commentez HOUBLON` fonctionne. `Commentez « le guide des
+  houblons »` ne fonctionne pas.
+- **Écrivez le premier commentaire à part** s'il y a un lien. Dites-le dans le
+  récapitulatif.
+- **L'emoji comme ponctuation, pas comme décoration.** Le linter signale tout
+  ce qui dépasse 4 emoji pour 100 caractères.
+- **Le texte alternatif vaut 20 secondes.** Pour les carrousels et les photos,
+  écrivez-le. Il est lu par les lecteurs d'écran et par Instagram.
+- **Le message sanitaire n'est pas négociable** dès qu'une bière est montrée ou
+  nommée. Il ne compte pas dans « un seul appel à l'action ».
 
-## The loop
+## La boucle
 
-1. Decide Job A or Job B and say which.
-2. Draft it.
-3. Run `/ig-human` on it. Captions are short, so slop is louder here than
-   anywhere else in the pack.
-4. Run `caption.py` with the user's search terms. Fix every FAIL. Decide on
-   every WARN out loud rather than silently.
-5. Print the copy-ready block, then the receipt:
+1. Décidez Travail A ou Travail B, et dites lequel.
+2. Rédigez.
+3. Passez-la dans `/ig-human`. Les légendes sont courtes, donc les formules
+   toutes faites (« slop ») s'y entendent plus que partout ailleurs dans le
+   pack.
+4. Lancez `caption.py` avec les termes de recherche de l'utilisateur
+   (`--lang fr` si la détection hésite). Corrigez chaque FAIL. Tranchez chaque
+   WARN à voix haute plutôt qu'en silence.
+5. Contrôle `ÉVIN` : si `caption.py` renvoie FAIL parce que la légende parle
+   d'alcool sans message sanitaire, ajoutez-le et relancez. `--evin on` force le contrôle
+   (par exemple quand la bière n'est montrée que sur l'image) ; n'utilisez
+   `--evin off` que pour un post sans aucun lien avec l'alcool. Relisez ensuite
+   le contenu contre `loi-evin.md` : le script vérifie la présence du message,
+   pas le reste. Chaque élément hors L3323-4 devient « À FAIRE VALIDER (Loi
+   Évin) ».
+6. Affichez le bloc prêt à copier, puis le récapitulatif :
 
 ```
-CAPTION READY
-job:        A - the reel carries the hook
-visible:    118 of 125 characters used before the cut
-ask:        one, comment CONTRACT
-hashtags:   3
-search:     "client proposals" in line 3, "agency pricing" in line 5
+LÉGENDE PRÊTE
+travail:    A - le reel porte l'accroche
+visible:    118 caractères sur 125 utilisés avant la coupure
+appel:      un seul, commentez HOUBLON
+hashtags:   3 (5 maximum)
+recherche:  « bière artisanale » en ligne 3, « bière de saison » en ligne 5
+loi Évin:   message sanitaire présent · 1 élément À FAIRE VALIDER (photo de
+            terrasse entre amis)
 linter:     READY
 ```
 
-Nothing is posted. The user pastes it.
+Rien n'est publié. L'utilisateur colle la légende et publie.
