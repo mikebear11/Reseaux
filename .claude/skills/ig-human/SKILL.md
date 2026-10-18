@@ -28,7 +28,7 @@ texte est détectée).
 
 - Rédigez et réécrivez en français.
 - Respectez le tutoiement ou le vouvoiement indiqué dans
-  `~/.claude/instagram/voice.md`. S'il n'est pas indiqué, demandez une fois ;
+  `instagram/voice.md`. S'il n'est pas indiqué, demandez une fois ;
   sans réponse, vouvoiement par défaut.
 - Typographie française correcte : « guillemets », apostrophe, espace avant
   ; : ! ? acceptable. Pas de tiret cadratin.

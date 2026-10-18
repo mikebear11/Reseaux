@@ -67,7 +67,7 @@ Lisez d'abord `../ig-caption/loi-evin.md`. Pour un Reel :
 
 ## Avant d'écrire
 
-1. Lisez `~/.claude/instagram/voice.md` s'il existe. C'est le profil de voix de
+1. Lisez `instagram/voice.md` s'il existe. C'est le profil de voix de
    l'utilisateur : comment il parle face caméra, ce qu'il ne dit jamais, à qui
    il s'adresse. S'il n'existe pas, demandez **trois de ses propres Reels**,
    transcrivez-les ou lisez-les, déduisez la voix et écrivez le fichier. Un
@@ -82,7 +82,7 @@ Lisez d'abord `../ig-caption/loi-evin.md`. Pour un Reel :
 3. Si l'idée est maigre, ne la gonflez pas. Posez une seule question groupée :
    que s'est-il passé, à qui, et qu'est-ce que ça a coûté ou rapporté. Un Reel
    a besoin d'une chose précise et vraie. Obtenez-la avant d'écrire.
-4. Si `~/.claude/instagram/swipe.md` existe, lisez-le. `/ig-viral` écrit ce
+4. Si `instagram/swipe.md` existe, lisez-le. `/ig-viral` écrit ce
    fichier, et c'est la preuve propre à l'utilisateur des formules qui marchent
    dans sa niche en ce moment. Il l'emporte sur les valeurs par défaut de ce
    fichier.
@@ -150,10 +150,16 @@ légende :    lancez /ig-caption ensuite
 Répondez « oui » pour l'enregistrer dans le journal, ou dites-moi ce qu'il faut changer.
 ```
 
-**7. Ne publiez jamais.** Ce skill produit un script. L'utilisateur le tourne
-et le publie. Sur « oui », ajoutez à `~/.claude/instagram/log.md` la date, la
-formule d'accroche utilisée et la première phrase, pour que `/ig-audit` ait un
-historique plus tard.
+**7. Publication : seulement sur un « oui, publie » explicite.** Ce skill
+produit un script ; la brasserie tourne la vidéo. Une fois la vidéo montée
+fournie, le Reel peut être publié sur `@sulauze` via vidIQ, en suivant la
+section « Publication » de `CLAUDE.md` : montrer la vidéo, la légende finale
+(passée dans `caption.py`, message sanitaire compris) et le compte, attendre un
+« oui, publie » pour ce Reel précis, puis publier. Sans compte relié ou sans
+ce « oui », rien ne part : la brasserie publie elle-même. Après publication
+(ou sur « oui » pour enregistrer le script), ajoutez à `instagram/log.md` la
+date, la formule d'accroche utilisée et la première phrase, et commitez, pour
+que `/ig-audit` ait un historique plus tard.
 
 ## Le texte à l'écran est un script à part
 

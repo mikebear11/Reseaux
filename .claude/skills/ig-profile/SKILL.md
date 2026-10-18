@@ -19,7 +19,7 @@ qu'il y a d'autres choses comme ça ici, et est-ce que c'est pour moi.
 
 - Rédigez en français, réécritures comprises.
 - Respectez le tutoiement ou le vouvoiement indiqué dans
-  `~/.claude/instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
+  `instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
   réponse, vouvoyez. La bio suit le même choix.
 - Typographie française : « guillemets », espace avant ; : ! ? acceptée. Pas de
   tiret cadratin. Le français est plus long : les limites de 30 et 150

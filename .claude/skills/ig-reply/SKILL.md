@@ -22,7 +22,7 @@ Mais tous les commentaires ne se valent pas, donc ce skill trie avant d'écrire.
 
 - Rédigez en français.
 - Respectez le tutoiement ou le vouvoiement indiqué dans
-  `~/.claude/instagram/voice.md`. S'il n'est pas indiqué, demandez une fois ;
+  `instagram/voice.md`. S'il n'est pas indiqué, demandez une fois ;
   sans réponse, vouvoiement par défaut.
 - Typographie française correcte : « guillemets », espace avant ; : ! ?
   acceptable. Pas de tiret cadratin.

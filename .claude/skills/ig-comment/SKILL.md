@@ -23,7 +23,7 @@ de la seule personne dont l'avis comptait : le créateur.
 
 - Rédigez en français.
 - Respectez le tutoiement ou le vouvoiement indiqué dans
-  `~/.claude/instagram/voice.md`. S'il n'est pas indiqué, demandez une fois ;
+  `instagram/voice.md`. S'il n'est pas indiqué, demandez une fois ;
   sans réponse, vouvoiement par défaut. Sous le post d'un autre, alignez-vous
   aussi sur le registre du créateur et de ses commentaires.
 - Typographie française correcte : « guillemets », espace avant ; : ! ?
@@ -131,7 +131,7 @@ loi Évin:  aucune bière nommée · 0 élément À FAIRE VALIDER
 
 Pour une tournée d'engagement, demandez les 5 à 10 posts en texte collé dans un
 seul message, rendez un commentaire par post dans un seul bloc, et tenez à jour
-dans `~/.claude/instagram/log.md` la liste des comptes commentés cette semaine.
+dans `instagram/log.md` la liste des comptes commentés cette semaine.
 Commenter les trois mêmes comptes tous les jours, ça se voit, et ça ressemble
 exactement à ce que c'est.
 

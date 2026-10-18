@@ -31,7 +31,7 @@ reconnaît les appels à l'action français) et `--evin on|auto|off` (contrôle
 
 - Rédigez en français.
 - Respectez le tutoiement ou le vouvoiement indiqué dans
-  `~/.claude/instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
+  `instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
   réponse, vouvoyez.
 - Typographie française : « guillemets », apostrophe ’ ou ', espace avant ; : ! ?
   acceptée. Pas de tiret cadratin.
@@ -181,4 +181,7 @@ loi Évin:   message sanitaire présent · 1 élément À FAIRE VALIDER (photo d
 linter:     READY
 ```
 
-Rien n'est publié. L'utilisateur colle la légende et publie.
+Publication : pour un Reel, possible via vidIQ après un « oui, publie »
+explicite sur la vidéo, cette légende exacte et le compte (voir « Publication »
+dans `CLAUDE.md`). Pour une photo, un carrousel ou une story, l'outil ne sait
+pas publier : la brasserie colle la légende et publie.

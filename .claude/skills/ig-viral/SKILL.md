@@ -20,7 +20,7 @@ saison.
 Un outil vit dans ce dossier et il fonctionne :
 
 ```bash
-python3 swipe.py captured.tsv --out ~/.claude/instagram/swipe.md
+python3 swipe.py captured.tsv --out "$(git rev-parse --show-toplevel)/instagram/swipe.md"
 ```
 
 Il accepte `--lang auto|fr|en` (par défaut `auto`) et classe les accroches avec
@@ -139,7 +139,7 @@ account	followers	median	views	hook
 ```
 
 ```bash
-python3 swipe.py captured.tsv --out ~/.claude/instagram/swipe.md
+python3 swipe.py captured.tsv --out "$(git rev-parse --show-toplevel)/instagram/swipe.md"
 ```
 
 Il calcule le multiple de surperformance, nomme la formule d'accroche à partir
@@ -199,7 +199,7 @@ VOTRE VERSION
   ...
 ```
 
-Écrivez le fichier d'inspiration dans `~/.claude/instagram/swipe.md`.
+Écrivez le fichier d'inspiration dans `instagram/swipe.md`.
 `/ig-reel` et `/ig-plan` le lisent tous les deux, et c'est tout l'intérêt :
 après un premier passage, le reste du pack travaille à partir des preuves de
 l'utilisateur et non plus de valeurs par défaut.

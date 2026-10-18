@@ -36,7 +36,7 @@ Demandez ce que l'utilisateur a sous la main :
 - Ou simplement les posts et leurs nombres de vues, ce qui suffit pour un
   premier passage.
 
-Lisez aussi `~/.claude/instagram/log.md` s'il existe, puisqu'il note la
+Lisez aussi `instagram/log.md` s'il existe, puisqu'il note la
 formule d'accroche utilisée pour chaque post.
 
 ## Ce qu'il faut vraiment mesurer

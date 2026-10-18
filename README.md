@@ -1,6 +1,8 @@
 # Reseaux
 
-Outils pour gérer les réseaux sociaux.
+Outils pour gérer les réseaux sociaux de la Brasserie de Sulauze (`@sulauze`).
+Le contexte du compte et les règles sont dans `CLAUDE.md` ; le profil de ton
+pré-rempli est dans `instagram/voice.md`.
 
 ## Skills Instagram (`.claude/skills/ig-*`)
 
@@ -46,10 +48,10 @@ exactement le même résultat que l'original (vérifié sur les exemples de l'au
 - **Le contrôle ÉVIN ne vérifie qu'une phrase**, le message sanitaire. Il ne
   dit pas qu'un post est conforme. Ce n'est pas un avis juridique.
 - Les fichiers de travail (`voice.md`, `log.md`, `swipe.md`, `plan.md`) sont
-  écrits dans `~/.claude/instagram/`, qui n'est pas conservé dans une session
-  cloud éphémère. Copiez-les dans le dépôt si vous voulez les garder.
+  dans `instagram/` à la racine du dépôt : à commiter après chaque
+  modification, sinon une session cloud les perd.
 
 ### Démarrer
 
-Remplir `templates/voice.md` (tutoiement ou vouvoiement, cible, vrais
-chiffres, message sanitaire), puis le copier dans `~/.claude/instagram/voice.md`.
+Compléter et valider `instagram/voice.md` (les lignes « À CONFIRMER » et les
+cases vides). `templates/voice.md` reste le modèle vierge.

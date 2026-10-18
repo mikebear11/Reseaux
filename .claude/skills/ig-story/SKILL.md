@@ -22,7 +22,7 @@ différent : de la profondeur, pas de la portée.
 
 - Rédigez en français.
 - Respectez le tutoiement ou le vouvoiement indiqué dans
-  `~/.claude/instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
+  `instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
   réponse, vouvoyez. (Les stories parlent à une seule personne : « tu » ou
   « vous », mais toujours au singulier dans l'intention.)
 - Typographie française : « guillemets », espace avant ; : ! ? acceptée. Pas de

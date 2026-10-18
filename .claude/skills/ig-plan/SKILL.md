@@ -17,7 +17,7 @@ est exécuté. Lancez-le une fois par semaine, toujours le même jour.
 
 - Rédigez en français, plan compris (jours, formats, angles).
 - Respectez le tutoiement ou le vouvoiement indiqué dans
-  `~/.claude/instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
+  `instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
   réponse, vouvoyez.
 - Typographie française : « guillemets », espace avant ; : ! ? acceptée, heures
   au format 19h30. Pas de tiret cadratin.
@@ -52,7 +52,7 @@ Lisez `../ig-caption/loi-evin.md` avant de planifier pour une brasserie.
 
 ## Entrée
 
-Si `~/.claude/instagram/voice.md`, `swipe.md` et `log.md` existent, lisez-les.
+Si `instagram/voice.md`, `swipe.md` et `log.md` existent, lisez-les.
 Le fichier d'inspiration (swipe file) est la preuve propre à l'utilisateur, issue
 de `/ig-viral`, des formules qui marchent dans son domaine en ce moment, et il
 prime sur tout ce qui est écrit ici. Le journal empêche le plan de répéter un
@@ -143,6 +143,6 @@ loi Évin :  message sanitaire prévu sur les 4 posts · 1 élément À FAIRE VA
 Dites « écris mardi » et je le rédige.
 ```
 
-Écrivez le plan dans `~/.claude/instagram/plan.md` pour que les autres skills
+Écrivez le plan dans `instagram/plan.md` pour que les autres skills
 puissent le lire. Rien n'est programmé ni publié nulle part. C'est un plan, et
 c'est l'utilisateur qui le met en œuvre.

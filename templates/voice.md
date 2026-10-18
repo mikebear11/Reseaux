@@ -1,6 +1,6 @@
 # voice.md
 
-Copiez ce fichier dans `~/.claude/instagram/voice.md` et remplissez-le. Tous
+Copiez ce fichier dans `instagram/voice.md` et remplissez-le. Tous
 les skills du pack le lisent. Dix minutes ici, c'est la différence entre des
 scripts que vous tournez et des scripts que vous réécrivez.
 

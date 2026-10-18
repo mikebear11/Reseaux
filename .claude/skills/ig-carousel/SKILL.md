@@ -23,7 +23,7 @@ morceaux.
 
 - Rédigez en français.
 - Respectez le tutoiement ou le vouvoiement indiqué dans
-  `~/.claude/instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
+  `instagram/voice.md`. S'il n'y est pas, demandez une fois ; sans
   réponse, vouvoyez.
 - Typographie française : « guillemets », espace avant ; : ! ? acceptée. Pas de
   tiret cadratin. Le français est plus long que l'anglais : comptez les mots,
