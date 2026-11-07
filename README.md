@@ -51,6 +51,26 @@ exactement le même résultat que l'original (vérifié sur les exemples de l'au
   dans `instagram/` à la racine du dépôt : à commiter après chaque
   modification, sinon une session cloud les perd.
 
+## Skills Google (`.claude/skills/avis-google`, `.claude/skills/seo-local`)
+
+Adaptés de deux skills de
+[OneWave-AI/claude-skills](https://github.com/OneWave-AI/claude-skills)
+(commit `b2267d9`, licence MIT, voir `.claude/skills/LICENSE-onewave-claude-skills`) :
+`review-response-writer` → `/avis-google`, `local-seo-optimizer` → `/seo-local`.
+Ce ne sont pas des copies : réécrits en français, avec les règles de la
+brasserie (message sanitaire, pas de « bio », rien d'inventé) et les règles
+Google et françaises sourcées dans `avis-google/regles-google.md` (consultées
+le 07/11/2026). Retiré de l'original : les chiffres sans source, et le conseil
+de faire citer des mots-clés aux clients dans leurs avis (interdit par Google).
+
+Aucun des deux ne publie ni ne modifie la fiche Google : ils rédigent et
+auditent, la brasserie applique. Fichiers de travail : `google/` à la racine
+(à créer à la première utilisation, à commiter).
+
+Non repris : les 227 autres skills du dépôt (hors sujet ou en doublon avec
+les `ig-*`), et `hyperframes-local-promo`, qui dépend des skills HyperFrames
+non installés ici.
+
 ### Démarrer
 
 Compléter et valider `instagram/voice.md` (les lignes « À CONFIRMER » et les

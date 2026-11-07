@@ -32,6 +32,10 @@ des skills sont relatifs à cette racine) : `voice.md` (profil de ton),
 après chaque modification : une session cloud efface tout ce qui n'est pas
 poussé.
 
+Avis et fiche Google : skills `/avis-google` et `/seo-local`, fichiers dans
+`google/` (mêmes règles : commiter après chaque modification). Rien n'est
+publié sur Google depuis ce dépôt : la brasserie copie les réponses elle-même.
+
 ## Publication
 
 - Seul outil disponible ici : vidIQ (`vidiq_instagram_publish_reel`), qui passe
