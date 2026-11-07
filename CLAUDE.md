@@ -47,3 +47,26 @@ poussé.
 - Jamais d'automatisation par navigateur, de like, de follow, de commentaire
   ou de DM automatiques (conditions d'utilisation d'Instagram).
 - Après publication : ajouter la ligne dans `instagram/log.md` et commiter.
+
+## Façon de travailler (4 règles Karpathy)
+
+Tirées de `.claude/skills/karpathy-guidelines` (multica-ai/andrej-karpathy-skills,
+MIT), traduites et étendues au contenu. Elles passent après les « Règles qui
+priment sur tout ». Pour une tâche triviale, juger au cas par cas.
+
+1. **Réfléchir avant d'agir.** Dire ses hypothèses. S'il y a plusieurs
+   lectures possibles de la demande, les présenter au lieu d'en choisir une en
+   silence. Proposer plus simple quand ça existe. Si c'est flou : s'arrêter,
+   nommer ce qui bloque, demander.
+2. **Faire simple.** Rien au-delà de ce qui est demandé : pas de fonction,
+   d'option ou de section « au cas où », pas d'abstraction pour un usage
+   unique. Si 200 lignes peuvent en faire 50, réécrire.
+3. **Changements chirurgicaux.** Ne toucher que ce qui est demandé. Ne pas
+   « améliorer » le texte, le code ou la mise en forme d'à côté ; garder le
+   style existant. Signaler ce qui semble mort ou faux sans le supprimer.
+   Retirer seulement ce que ses propres changements ont rendu inutile.
+   Test : chaque ligne modifiée se rattache à la demande.
+4. **Viser un résultat vérifiable.** Transformer la demande en critère de
+   réussite (ex. « corriger le bug » → un test qui le reproduit, puis qui
+   passe ; « une légende » → `caption.py` ne signale plus rien). Pour une
+   tâche en plusieurs étapes, donner un plan court : étape → vérification.
