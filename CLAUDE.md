@@ -32,6 +32,10 @@ des skills sont relatifs à cette racine) : `voice.md` (profil de ton),
 après chaque modification : une session cloud efface tout ce qui n'est pas
 poussé.
 
+Avis et fiche Google : skills `/avis-google` et `/seo-local`, fichiers dans
+`google/` (mêmes règles : commiter après chaque modification). Rien n'est
+publié sur Google depuis ce dépôt : la brasserie copie les réponses elle-même.
+
 ## Réserve de skills externes
 
 Quand un besoin n'est couvert par aucune skill de `.claude/skills/`, chercher
@@ -62,3 +66,51 @@ s'en servir :
 - Jamais d'automatisation par navigateur, de like, de follow, de commentaire
   ou de DM automatiques (conditions d'utilisation d'Instagram).
 - Après publication : ajouter la ligne dans `instagram/log.md` et commiter.
+
+## Façon de travailler (4 règles Karpathy)
+
+Tirées de multica-ai/andrej-karpathy-skills (MIT), traduites et étendues au
+contenu. Détails et exemples : skill `.claude/skills/karpathy-guidelines`.
+Elles passent après les « Règles qui priment sur tout ». Pour une tâche triviale, juger au cas par cas.
+
+1. **Réfléchir avant d'agir.** Dire ses hypothèses. S'il y a plusieurs
+   lectures possibles de la demande, les présenter au lieu d'en choisir une en
+   silence. Proposer plus simple quand ça existe. Si c'est flou : s'arrêter,
+   nommer ce qui bloque, demander.
+2. **Faire simple.** Rien au-delà de ce qui est demandé : pas de fonction,
+   d'option ou de section « au cas où », pas d'abstraction pour un usage
+   unique. Si 200 lignes peuvent en faire 50, réécrire.
+3. **Changements chirurgicaux.** Ne toucher que ce qui est demandé. Ne pas
+   « améliorer » le texte, le code ou la mise en forme d'à côté ; garder le
+   style existant. Signaler ce qui semble mort ou faux sans le supprimer.
+   Retirer seulement ce que ses propres changements ont rendu inutile.
+   Test : chaque ligne modifiée se rattache à la demande.
+4. **Viser un résultat vérifiable.** Transformer la demande en critère de
+   réussite (ex. « corriger le bug » → un test qui le reproduit, puis qui
+   passe ; « une légende » → `caption.py` ne signale plus rien). Pour une
+   tâche en plusieurs étapes, donner un plan court : étape → vérification.
+
+## Agents
+
+Deux agents du projet dans `.claude/agents/` :
+
+- `relecteur` : relecture indépendante de tout contenu final avant de le
+  montrer ou de le publier (message sanitaire, pas de « bio », faits vérifiés,
+  bon compte, `caption.py`, `detect.py`). Lui donner le texte exact et les
+  faits fournis par la brasserie, pas son propre avis.
+- `verificateur-sources` : recherche web avec sources citées, « Je ne sais
+  pas » sinon. Pour tout fait qui ne vient pas de la brasserie.
+
+Les autres agents intégrés (`Explore`, `general-purpose`, `web-fetch`, `Plan`)
+servent au cas par cas. Ne lancer un agent que si le travail le justifie :
+une vérification de deux minutes se fait sans agent.
+
+## Outils de réserve (à mettre en place seulement si besoin)
+
+- **Context7** (`upstash/context7`, MIT) : documentation à jour des
+  bibliothèques et API de code, pour Claude. Utile seulement pour modifier les scripts ou
+  coder une intégration (ex. API Meta), pas pour le contenu. Mise en place :
+  serveur MCP `https://mcp.context7.com/mcp` dans un `.mcp.json` (clé API
+  gratuite conseillée, en-tête `Authorization: Bearer`). Au 07/11/2026,
+  l'hôte est bloqué par le réseau de l'environnement cloud : l'autoriser
+  d'abord. Ne pas l'installer « au cas où ».
