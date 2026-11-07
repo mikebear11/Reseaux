@@ -67,7 +67,7 @@ Aucun des deux ne publie ni ne modifie la fiche Google : ils rédigent et
 auditent, la brasserie applique. Fichiers de travail : `google/` à la racine
 (à créer à la première utilisation, à commiter).
 
-Non repris : les 228 autres skills du dépôt (hors sujet ou en doublon avec
+Non repris : les 227 autres skills du dépôt (hors sujet ou en doublon avec
 les `ig-*`), et `hyperframes-local-promo`, qui dépend des skills HyperFrames
 non installés ici.
 
