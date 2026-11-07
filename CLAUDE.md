@@ -70,3 +70,18 @@ Elles passent après les « Règles qui priment sur tout ». Pour une tâche tri
    réussite (ex. « corriger le bug » → un test qui le reproduit, puis qui
    passe ; « une légende » → `caption.py` ne signale plus rien). Pour une
    tâche en plusieurs étapes, donner un plan court : étape → vérification.
+
+## Agents
+
+Deux agents du projet dans `.claude/agents/` :
+
+- `relecteur` : relecture indépendante de tout contenu final avant de le
+  montrer ou de le publier (message sanitaire, pas de « bio », faits vérifiés,
+  bon compte, `caption.py`, `detect.py`). Lui donner le texte exact et les
+  faits fournis par la brasserie, pas son propre avis.
+- `verificateur-sources` : recherche web avec sources citées, « Je ne sais
+  pas » sinon. Pour tout fait qui ne vient pas de la brasserie.
+
+Les autres agents intégrés (`Explore`, `general-purpose`, `web-fetch`, `Plan`)
+servent au cas par cas. Ne lancer un agent que si le travail le justifie :
+une vérification de deux minutes se fait sans agent.
