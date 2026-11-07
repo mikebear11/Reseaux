@@ -85,3 +85,13 @@ Deux agents du projet dans `.claude/agents/` :
 Les autres agents intégrés (`Explore`, `general-purpose`, `web-fetch`, `Plan`)
 servent au cas par cas. Ne lancer un agent que si le travail le justifie :
 une vérification de deux minutes se fait sans agent.
+
+## Outils de réserve (à mettre en place seulement si besoin)
+
+- **Context7** (`upstash/context7`, MIT) : documentation à jour des
+  bibliothèques et API de code, pour Claude. Utile seulement pour modifier les scripts ou
+  coder une intégration (ex. API Meta), pas pour le contenu. Mise en place :
+  serveur MCP `https://mcp.context7.com/mcp` dans un `.mcp.json` (clé API
+  gratuite conseillée, en-tête `Authorization: Bearer`). Au 07/11/2026,
+  l'hôte est bloqué par le réseau de l'environnement cloud : l'autoriser
+  d'abord. Ne pas l'installer « au cas où ».
