@@ -50,9 +50,9 @@ poussé.
 
 ## Façon de travailler (4 règles Karpathy)
 
-Tirées de `.claude/skills/karpathy-guidelines` (multica-ai/andrej-karpathy-skills,
-MIT), traduites et étendues au contenu. Elles passent après les « Règles qui
-priment sur tout ». Pour une tâche triviale, juger au cas par cas.
+Tirées de multica-ai/andrej-karpathy-skills (MIT), traduites et étendues au
+contenu. Détails et exemples : skill `.claude/skills/karpathy-guidelines`.
+Elles passent après les « Règles qui priment sur tout ». Pour une tâche triviale, juger au cas par cas.
 
 1. **Réfléchir avant d'agir.** Dire ses hypothèses. S'il y a plusieurs
    lectures possibles de la demande, les présenter au lieu d'en choisir une en
