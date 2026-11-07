@@ -55,3 +55,17 @@ exactement le même résultat que l'original (vérifié sur les exemples de l'au
 
 Compléter et valider `instagram/voice.md` (les lignes « À CONFIRMER » et les
 cases vides). `templates/voice.md` reste le modèle vierge.
+
+## Skill `karpathy-guidelines` (`.claude/skills/karpathy-guidelines`)
+
+`SKILL.md` copié tel quel (en anglais) depuis
+[multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
+(commit `2c60614`). Licence MIT déclarée dans l'en-tête du skill et dans
+`.claude-plugin/plugin.json` du dépôt d'origine (auteur : forrestchang) ; ce
+dépôt ne contient pas de fichier LICENSE.
+
+Quatre règles de comportement pour Claude : réfléchir avant d'agir (dire ses
+hypothèses, demander si c'est flou), faire simple, ne toucher que ce qui est
+demandé, fixer un critère de réussite vérifiable. Le skill est écrit pour le
+code (scripts `caption.py`, `hookscore.py`…) ; il ne change rien aux règles de
+`CLAUDE.md`, qui priment.
