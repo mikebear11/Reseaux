@@ -92,3 +92,13 @@ exemples propres à la brasserie, les citations de Karpathy reprises par le dép
 d'origine, un tableau des erreurs à éviter et les signes que les règles
 marchent. Le résumé est aussi dans `CLAUDE.md` (chargé à chaque session).
 Les « Règles qui priment sur tout » de `CLAUDE.md` restent prioritaires.
+
+## Outils de réserve (à mettre en place seulement si besoin)
+
+- **Context7** (`upstash/context7`, MIT) : documentation à jour des
+  bibliothèques et API de code, pour Claude. Utile seulement pour modifier les scripts ou
+  coder une intégration (ex. API Meta), pas pour le contenu. Mise en place :
+  serveur MCP `https://mcp.context7.com/mcp` dans un `.mcp.json` (clé API
+  gratuite conseillée, en-tête `Authorization: Bearer`). Au 07/11/2026,
+  l'hôte est bloqué par le réseau de l'environnement cloud : l'autoriser
+  d'abord. Ne pas l'installer « au cas où ».
