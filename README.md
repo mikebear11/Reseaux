@@ -47,7 +47,8 @@ exactement le même résultat que l'original (vérifié sur les exemples de l'au
   la résume en français.
 - **Le contrôle ÉVIN ne vérifie qu'une phrase**, le message sanitaire. Il ne
   dit pas qu'un post est conforme. Ce n'est pas un avis juridique.
-- Les fichiers de travail (`voice.md`, `log.md`, `swipe.md`, `plan.md`) sont
+- Les fichiers de travail (`voice.md`, `log.md`, `swipe.md`, `plan.md`,
+  `a-valider.md`) sont
   dans `instagram/` à la racine du dépôt : à commiter après chaque
   modification, sinon une session cloud les perd.
 

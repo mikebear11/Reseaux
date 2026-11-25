@@ -28,7 +28,9 @@ Ce dépôt sert à gérer les réseaux sociaux de la Brasserie de Sulauze (Miram
 
 Tout est dans `instagram/` à la racine du dépôt (les chemins `instagram/...`
 des skills sont relatifs à cette racine) : `voice.md` (profil de ton),
-`log.md` (historique des publications), `swipe.md`, `plan.md`. Les commiter
+`log.md` (historique des publications), `swipe.md`, `plan.md`,
+`a-valider.md` (contenus prêts en attente d'un « oui » : à relire en début de
+session, et y inscrire tout contenu final avec son texte exact). Les commiter
 après chaque modification : une session cloud efface tout ce qui n'est pas
 poussé.
 
@@ -50,7 +52,8 @@ publié sur Google depuis ce dépôt : la brasserie copie les réponses elle-mê
   « oui, publie ». Un accord ne vaut que pour ce Reel-là.
 - Jamais d'automatisation par navigateur, de like, de follow, de commentaire
   ou de DM automatiques (conditions d'utilisation d'Instagram).
-- Après publication : ajouter la ligne dans `instagram/log.md` et commiter.
+- Après publication : ajouter la ligne dans `instagram/log.md`, retirer
+  l'entrée de `instagram/a-valider.md` et commiter.
 
 ## Façon de travailler (4 règles Karpathy)
 
